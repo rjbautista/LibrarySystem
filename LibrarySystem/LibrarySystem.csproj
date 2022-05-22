@@ -54,12 +54,31 @@
     <Compile Include="BookCategories.Designer.cs">
       <DependentUpon>BookCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="BookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookDetails.Designer.cs">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Books.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Books.Designer.cs">
+    <Compile Include="Books.designer.cs">
       <DependentUpon>Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="Courses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Courses.designer.cs">
+      <DependentUpon>Courses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAccount.Designer.cs">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DB.cs" />
     <Compile Include="Kiosk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,16 +108,25 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Users.Designer.cs">
+    <Compile Include="Users.designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="BookCategories.resx">
       <DependentUpon>BookCategories.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BookDetails.resx">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Books.resx">
       <DependentUpon>Books.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses.resx">
+      <DependentUpon>Courses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAccount.resx">
+      <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kiosk.resx">
       <DependentUpon>Kiosk.cs</DependentUpon>
@@ -137,8 +165,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,12 +26,14 @@ namespace LibrarySystem
         {
             Form Kiosk = new Kiosk();
             Kiosk.Show();
+            this.Hide();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             Form Login = new Login();
             Login.Show();
+            this.Hide();
         }
     }
 }

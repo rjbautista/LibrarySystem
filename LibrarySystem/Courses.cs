@@ -12,12 +12,12 @@ using System.Configuration;
 
 namespace LibrarySystem
 {
-    public partial class BookCategories : UserControl
+    public partial class Courses : UserControl
     {
         private Boolean IsEditing = false;
         private string EditingId = "";
 
-        public BookCategories()
+        public Courses()
         {
             InitializeComponent();
         }
@@ -27,11 +27,11 @@ namespace LibrarySystem
             if (TxtName.Text.Trim().Length > 0)
             {
 
-                string sqlCommand = "INSERT INTO bookcategories (Name) VALUES ('" + TxtName.Text + "')";
+                string sqlCommand = "INSERT INTO courses (Name) VALUES ('" + TxtName.Text + "')";
 
                 if (IsEditing)
                 {
-                    sqlCommand = "UPDATE bookcategories SET Name = '" + TxtName.Text + "' WHERE ID = " + EditingId;
+                    sqlCommand = "UPDATE courses SET Name = '" + TxtName.Text + "' WHERE ID = " + EditingId;
                     GrpNewForm.Visible = false;
                 }
 
@@ -41,18 +41,14 @@ namespace LibrarySystem
                 EditingId = "";
                 this.RefreshGrid();
             }
-            BtnNew.Enabled = true;
-            BtnEdit.Enabled = true;
-            BtnDelete.Enabled = true;
-            GridBookCategory.Enabled = true;
         }
 
-        private void BookCategories_Load(object sender, EventArgs e)
+        private void Courses_Load(object sender, EventArgs e)
         {
             if (!this.DesignMode)
             {
                 this.RefreshGrid();
-                GridBookCategory.ClearSelection();
+                GridCourses.ClearSelection();
             }
         }
 
@@ -60,7 +56,7 @@ namespace LibrarySystem
         {
             MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-            string sqlCommand = "SELECT * FROM bookcategories";
+            string sqlCommand = "SELECT * FROM courses";
             if (!SearchKey.Equals(""))
             {
                 sqlCommand += " WHERE Name LIKE '%" + SearchKey + "%'";
@@ -72,27 +68,23 @@ namespace LibrarySystem
             DataSet ds = new DataSet();
 
             dataAdapter.Fill(ds);
-            GridBookCategory.DataSource = ds.Tables[0];
+            GridCourses.DataSource = ds.Tables[0];
             dbConnection.Close();
         }
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
         {
             GrpNewForm.Visible = true;
-            TxtName.Text = "";
             BtnNew.Enabled = false;
-            BtnEdit.Enabled = false;
-            BtnDelete.Enabled = false;
+            TxtName.Text = "";
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             GrpNewForm.Visible = false;
+            BtnNew.Enabled = true;
             IsEditing = false;
             EditingId = "";
-            BtnNew.Enabled = true;
-            BtnEdit.Enabled = true;
-            BtnDelete.Enabled = true;
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -102,10 +94,10 @@ namespace LibrarySystem
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            if (GridBookCategory.SelectedRows.Count > 0)
+            if (GridCourses.SelectedRows.Count > 0)
             {
                 IsEditing = true;
-                foreach (DataGridViewRow row in GridBookCategory.SelectedRows)
+                foreach (DataGridViewRow row in GridCourses.SelectedRows)
                 {
                     EditingId = row.Cells[0].Value.ToString();
                     string Name = row.Cells[1].Value.ToString();
@@ -113,31 +105,26 @@ namespace LibrarySystem
                     TxtName.Text = Name;
                     GrpNewForm.Visible = true;
                 }
-
-                BtnNew.Enabled = false;
-                BtnEdit.Enabled = false;
-                BtnDelete.Enabled = false;
-                GridBookCategory.Enabled = false;
             }
         }
 
         private void GridBookCategory_SelectionChanged(object sender, EventArgs e)
         {
-            
+
             BtnEdit.Enabled = true;
             BtnDelete.Enabled = true;
-            
+
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (GridBookCategory.SelectedRows.Count > 0)
+            if (GridCourses.SelectedRows.Count > 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm delete", MessageBoxButtons.YesNo);
                 if (dialogResult.Equals(DialogResult.Yes)) {
-                    DataGridViewRow row = GridBookCategory.SelectedRows[0];
+                    DataGridViewRow row = GridCourses.SelectedRows[0];
                     string Id = row.Cells[0].Value.ToString();
-                    Helper.DB.ExecuteNonQuery("DELETE FROM bookcategories WHERE ID = '" + Id + "' LIMIT 1");
+                    Helper.DB.ExecuteNonQuery("DELETE FROM courses WHERE ID = '" + Id + "' LIMIT 1");
                     this.RefreshGrid();
                 }
             }

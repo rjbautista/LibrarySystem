@@ -62,7 +62,9 @@ namespace LibrarySystem
             this.ClientSize = new System.Drawing.Size(800, 230);
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnKiosk);
+            this.MaximizeBox = false;
             this.Name = "Start";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Library System";
             this.Load += new System.EventHandler(this.Start_Load);
             this.ResumeLayout(false);

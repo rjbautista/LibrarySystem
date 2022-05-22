@@ -1,14 +1,14 @@
 ﻿
 namespace LibrarySystem
 {
-    partial class BookCategories
+    partial class Courses
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -23,8 +23,8 @@ namespace LibrarySystem
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -40,7 +40,7 @@ namespace LibrarySystem
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.GridBookCategory = new System.Windows.Forms.DataGridView();
+            this.GridCourses = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TxtSearch = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@ namespace LibrarySystem
             this.GrpNewForm.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridBookCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridCourses)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,7 @@ namespace LibrarySystem
             this.groupBox1.Size = new System.Drawing.Size(1914, 108);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Manage Book Categories";
+            this.groupBox1.Text = "Manage Courses";
             // 
             // BtnDelete
             // 
@@ -108,7 +108,7 @@ namespace LibrarySystem
             this.GrpNewForm.Size = new System.Drawing.Size(848, 390);
             this.GrpNewForm.TabIndex = 6;
             this.GrpNewForm.TabStop = false;
-            this.GrpNewForm.Text = "Book Category information";
+            this.GrpNewForm.Text = "Course Information";
             this.GrpNewForm.Visible = false;
             // 
             // flowLayoutPanel1
@@ -126,13 +126,13 @@ namespace LibrarySystem
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 25);
+            this.label1.Size = new System.Drawing.Size(143, 25);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Category Name";
+            this.label1.Text = "Course Name";
             // 
             // TxtName
             // 
-            this.TxtName.Location = new System.Drawing.Point(170, 3);
+            this.TxtName.Location = new System.Drawing.Point(152, 3);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(526, 31);
             this.TxtName.TabIndex = 6;
@@ -169,24 +169,24 @@ namespace LibrarySystem
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // GridBookCategory
+            // GridCourses
             // 
-            this.GridBookCategory.AllowUserToAddRows = false;
-            this.GridBookCategory.AllowUserToDeleteRows = false;
-            this.GridBookCategory.AllowUserToResizeRows = false;
-            this.GridBookCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridBookCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridBookCategory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.GridBookCategory.Location = new System.Drawing.Point(0, 108);
-            this.GridBookCategory.MultiSelect = false;
-            this.GridBookCategory.Name = "GridBookCategory";
-            this.GridBookCategory.ReadOnly = true;
-            this.GridBookCategory.RowHeadersWidth = 82;
-            this.GridBookCategory.RowTemplate.Height = 33;
-            this.GridBookCategory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridBookCategory.Size = new System.Drawing.Size(1914, 998);
-            this.GridBookCategory.TabIndex = 1;
-            this.GridBookCategory.SelectionChanged += new System.EventHandler(this.GridBookCategory_SelectionChanged);
+            this.GridCourses.AllowUserToAddRows = false;
+            this.GridCourses.AllowUserToDeleteRows = false;
+            this.GridCourses.AllowUserToResizeRows = false;
+            this.GridCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridCourses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridCourses.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.GridCourses.Location = new System.Drawing.Point(0, 108);
+            this.GridCourses.MultiSelect = false;
+            this.GridCourses.Name = "GridCourses";
+            this.GridCourses.ReadOnly = true;
+            this.GridCourses.RowHeadersWidth = 82;
+            this.GridCourses.RowTemplate.Height = 33;
+            this.GridCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridCourses.Size = new System.Drawing.Size(1914, 998);
+            this.GridCourses.TabIndex = 1;
+            this.GridCourses.SelectionChanged += new System.EventHandler(this.GridBookCategory_SelectionChanged);
             // 
             // panel1
             // 
@@ -226,23 +226,23 @@ namespace LibrarySystem
             this.BtnSearch.UseVisualStyleBackColor = true;
             this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
-            // BookCategories
+            // Courses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.GrpNewForm);
-            this.Controls.Add(this.GridBookCategory);
+            this.Controls.Add(this.GridCourses);
             this.Controls.Add(this.groupBox1);
-            this.Name = "BookCategories";
+            this.Name = "Courses";
             this.Size = new System.Drawing.Size(1914, 1106);
-            this.Load += new System.EventHandler(this.BookCategories_Load);
+            this.Load += new System.EventHandler(this.Courses_Load);
             this.groupBox1.ResumeLayout(false);
             this.GrpNewForm.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridBookCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridCourses)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -253,7 +253,7 @@ namespace LibrarySystem
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView GridBookCategory;
+        private System.Windows.Forms.DataGridView GridCourses;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.GroupBox GrpNewForm;

@@ -30,16 +30,20 @@ namespace LibrarySystem
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblUsername = new System.Windows.Forms.Label();
+            this.LblUserId = new System.Windows.Forms.Label();
+            this.BtnMyAccount = new System.Windows.Forms.Button();
+            this.LblUsername = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cmdLogout = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnUsers = new System.Windows.Forms.Button();
+            this.BtnBooks = new System.Windows.Forms.Button();
+            this.BtnDashboard = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.bookCategories1 = new LibrarySystem.BookCategories();
+            this.UControlBooks = new LibrarySystem.Books();
+            this.UControlUsers = new LibrarySystem.Users();
+            this.UControlBookCategories = new LibrarySystem.BookCategories();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -47,7 +51,9 @@ namespace LibrarySystem
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblUsername);
+            this.panel1.Controls.Add(this.LblUserId);
+            this.panel1.Controls.Add(this.BtnMyAccount);
+            this.panel1.Controls.Add(this.LblUsername);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -55,14 +61,34 @@ namespace LibrarySystem
             this.panel1.Size = new System.Drawing.Size(2504, 100);
             this.panel1.TabIndex = 0;
             // 
-            // lblUsername
+            // LblUserId
             // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(148, 38);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(68, 25);
-            this.lblUsername.TabIndex = 1;
-            this.lblUsername.Text = "Name";
+            this.LblUserId.AutoSize = true;
+            this.LblUserId.Location = new System.Drawing.Point(5, 0);
+            this.LblUserId.Name = "LblUserId";
+            this.LblUserId.Size = new System.Drawing.Size(74, 25);
+            this.LblUserId.TabIndex = 3;
+            this.LblUserId.Text = "UserId";
+            this.LblUserId.Visible = false;
+            // 
+            // BtnMyAccount
+            // 
+            this.BtnMyAccount.Location = new System.Drawing.Point(354, 12);
+            this.BtnMyAccount.Name = "BtnMyAccount";
+            this.BtnMyAccount.Size = new System.Drawing.Size(198, 70);
+            this.BtnMyAccount.TabIndex = 2;
+            this.BtnMyAccount.Text = "My Account";
+            this.BtnMyAccount.UseVisualStyleBackColor = true;
+            this.BtnMyAccount.Click += new System.EventHandler(this.BtnMyAccount_Click);
+            // 
+            // LblUsername
+            // 
+            this.LblUsername.AutoSize = true;
+            this.LblUsername.Location = new System.Drawing.Point(148, 38);
+            this.LblUsername.Name = "LblUsername";
+            this.LblUsername.Size = new System.Drawing.Size(68, 25);
+            this.LblUsername.TabIndex = 1;
+            this.LblUsername.Text = "Name";
             // 
             // label1
             // 
@@ -75,11 +101,11 @@ namespace LibrarySystem
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.cmdLogout);
+            this.panel2.Controls.Add(this.btnLogout);
             this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.BtnUsers);
+            this.panel2.Controls.Add(this.BtnBooks);
+            this.panel2.Controls.Add(this.BtnDashboard);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
@@ -87,16 +113,17 @@ namespace LibrarySystem
             this.panel2.Size = new System.Drawing.Size(354, 1104);
             this.panel2.TabIndex = 1;
             // 
-            // cmdLogout
+            // btnLogout
             // 
-            this.cmdLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.cmdLogout.Location = new System.Drawing.Point(10, 987);
-            this.cmdLogout.Margin = new System.Windows.Forms.Padding(5);
-            this.cmdLogout.Name = "cmdLogout";
-            this.cmdLogout.Size = new System.Drawing.Size(334, 107);
-            this.cmdLogout.TabIndex = 4;
-            this.cmdLogout.Text = "Logout";
-            this.cmdLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogout.Location = new System.Drawing.Point(10, 987);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(5);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(334, 107);
+            this.btnLogout.TabIndex = 4;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // button4
             // 
@@ -109,55 +136,75 @@ namespace LibrarySystem
             this.button4.Text = "Reports";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // BtnUsers
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(10, 224);
-            this.button3.Margin = new System.Windows.Forms.Padding(5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(334, 107);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Users";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BtnUsers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnUsers.Location = new System.Drawing.Point(10, 224);
+            this.BtnUsers.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnUsers.Name = "BtnUsers";
+            this.BtnUsers.Size = new System.Drawing.Size(334, 107);
+            this.BtnUsers.TabIndex = 2;
+            this.BtnUsers.Text = "Users";
+            this.BtnUsers.UseVisualStyleBackColor = true;
+            this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
             // 
-            // button2
+            // BtnBooks
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(10, 117);
-            this.button2.Margin = new System.Windows.Forms.Padding(5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(334, 107);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Books";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnBooks.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnBooks.Location = new System.Drawing.Point(10, 117);
+            this.BtnBooks.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnBooks.Name = "BtnBooks";
+            this.BtnBooks.Size = new System.Drawing.Size(334, 107);
+            this.BtnBooks.TabIndex = 1;
+            this.BtnBooks.Text = "Books";
+            this.BtnBooks.UseVisualStyleBackColor = true;
+            this.BtnBooks.Click += new System.EventHandler(this.BtnBooks_Click);
             // 
-            // button1
+            // BtnDashboard
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(10, 10);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(334, 107);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Dashboard";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnDashboard.Location = new System.Drawing.Point(10, 10);
+            this.BtnDashboard.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnDashboard.Name = "BtnDashboard";
+            this.BtnDashboard.Size = new System.Drawing.Size(334, 107);
+            this.BtnDashboard.TabIndex = 0;
+            this.BtnDashboard.Text = "Dashboard";
+            this.BtnDashboard.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.bookCategories1);
+            this.panel3.Controls.Add(this.UControlBooks);
+            this.panel3.Controls.Add(this.UControlUsers);
+            this.panel3.Controls.Add(this.UControlBookCategories);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(354, 100);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(2150, 1104);
             this.panel3.TabIndex = 2;
             // 
-            // bookCategories1
+            // UControlBooks
             // 
-            this.bookCategories1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bookCategories1.Location = new System.Drawing.Point(0, 0);
-            this.bookCategories1.Name = "bookCategories1";
-            this.bookCategories1.Size = new System.Drawing.Size(2150, 1104);
-            this.bookCategories1.TabIndex = 0;
+            this.UControlBooks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlBooks.Location = new System.Drawing.Point(0, 0);
+            this.UControlBooks.Name = "UControlBooks";
+            this.UControlBooks.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlBooks.TabIndex = 2;
+            // 
+            // UControlUsers
+            // 
+            this.UControlUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlUsers.Location = new System.Drawing.Point(0, 0);
+            this.UControlUsers.Name = "UControlUsers";
+            this.UControlUsers.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlUsers.TabIndex = 1;
+            // 
+            // UControlBookCategories
+            // 
+            this.UControlBookCategories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlBookCategories.Location = new System.Drawing.Point(0, 0);
+            this.UControlBookCategories.Name = "UControlBookCategories";
+            this.UControlBookCategories.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlBookCategories.TabIndex = 0;
             // 
             // Main
             // 
@@ -168,7 +215,9 @@ namespace LibrarySystem
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -181,14 +230,18 @@ namespace LibrarySystem
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button cmdLogout;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnUsers;
+        private System.Windows.Forms.Button BtnBooks;
+        private System.Windows.Forms.Button BtnDashboard;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label LblUsername;
         private System.Windows.Forms.Label label1;
-        private BookCategories bookCategories1;
+        private BookCategories UControlBookCategories;
+        private Users UControlUsers;
+        private System.Windows.Forms.Button BtnMyAccount;
+        private System.Windows.Forms.Label LblUserId;
+        private Books UControlBooks;
     }
 }

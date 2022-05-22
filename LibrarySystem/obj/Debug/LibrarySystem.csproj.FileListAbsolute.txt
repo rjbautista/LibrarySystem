@@ -16,6 +16,8 @@
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.exe.config
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookCategories.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Books.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Courses.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.EditAccount.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Kiosk.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Login.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Main.resources
@@ -27,4 +29,4 @@
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.csproj.CopyComplete
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.exe
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.pdb
-\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookDetails.resources

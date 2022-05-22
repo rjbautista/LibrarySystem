@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 
+
+
+
 namespace LibrarySystem
 {
     public partial class Login : Form
@@ -28,9 +31,20 @@ namespace LibrarySystem
             dbConnection.Open();
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows) {
+                reader.Read();
+
                 Form Main = new Main();
+                Control LblUsername = Main.Controls.Find("LblUsername", true)[0];
+                Control LblUserId = Main.Controls.Find("LblUserId", true)[0];
+                LblUsername.Text = reader["Name"].ToString();
+                LblUserId.Text = reader["ID"].ToString();
                 Main.Show();
+                this.Close();
+            } else
+            {
+                MessageBox.Show("Invalid combination of USN/Employee number and password.", "Login", MessageBoxButtons.OK);
             }
+
             dbConnection.Close();
         }
 
@@ -46,6 +60,14 @@ namespace LibrarySystem
         private void Login_Load(object sender, EventArgs e)
         {
             txtPass.PasswordChar = '\u25CF';
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Form Start = Application.OpenForms["Start"];
+            Start.Show();
+
+            this.Close();
         }
     }
 }
