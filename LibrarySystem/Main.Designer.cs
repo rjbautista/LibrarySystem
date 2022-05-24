@@ -35,12 +35,18 @@ namespace LibrarySystem
             this.LblUsername = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BtnReturn = new System.Windows.Forms.Button();
+            this.BtnRequest = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.BtnUsers = new System.Windows.Forms.Button();
             this.BtnBooks = new System.Windows.Forms.Button();
             this.BtnDashboard = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.UControlProcessStudent = new LibrarySystem.ProcessEnrolledStudents();
+            this.UControlBookTransaction = new LibrarySystem.BookTransaction();
+            this.UControlHome = new LibrarySystem.Home();
             this.UControlBooks = new LibrarySystem.Books();
             this.UControlUsers = new LibrarySystem.Users();
             this.UControlBookCategories = new LibrarySystem.BookCategories();
@@ -76,7 +82,7 @@ namespace LibrarySystem
             this.BtnMyAccount.Location = new System.Drawing.Point(354, 12);
             this.BtnMyAccount.Name = "BtnMyAccount";
             this.BtnMyAccount.Size = new System.Drawing.Size(198, 70);
-            this.BtnMyAccount.TabIndex = 2;
+            this.BtnMyAccount.TabIndex = 1;
             this.BtnMyAccount.Text = "My Account";
             this.BtnMyAccount.UseVisualStyleBackColor = true;
             this.BtnMyAccount.Click += new System.EventHandler(this.BtnMyAccount_Click);
@@ -101,6 +107,9 @@ namespace LibrarySystem
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.BtnReturn);
+            this.panel2.Controls.Add(this.BtnRequest);
             this.panel2.Controls.Add(this.btnLogout);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.BtnUsers);
@@ -112,6 +121,39 @@ namespace LibrarySystem
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
             this.panel2.Size = new System.Drawing.Size(354, 1104);
             this.panel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 478);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(334, 107);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Process Enrolled Students";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // BtnReturn
+            // 
+            this.BtnReturn.Location = new System.Drawing.Point(10, 792);
+            this.BtnReturn.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnReturn.Name = "BtnReturn";
+            this.BtnReturn.Size = new System.Drawing.Size(334, 107);
+            this.BtnReturn.TabIndex = 7;
+            this.BtnReturn.Text = "Return Books";
+            this.BtnReturn.UseVisualStyleBackColor = true;
+            this.BtnReturn.Click += new System.EventHandler(this.BtnReturn_Click);
+            // 
+            // BtnRequest
+            // 
+            this.BtnRequest.Location = new System.Drawing.Point(10, 675);
+            this.BtnRequest.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnRequest.Name = "BtnRequest";
+            this.BtnRequest.Size = new System.Drawing.Size(334, 107);
+            this.BtnRequest.TabIndex = 6;
+            this.BtnRequest.Text = "Borrow Requests";
+            this.BtnRequest.UseVisualStyleBackColor = true;
+            this.BtnRequest.Click += new System.EventHandler(this.BtnRequest_Click);
             // 
             // btnLogout
             // 
@@ -127,52 +169,52 @@ namespace LibrarySystem
             // 
             // button4
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.Location = new System.Drawing.Point(10, 331);
+            this.button4.Location = new System.Drawing.Point(10, 361);
             this.button4.Margin = new System.Windows.Forms.Padding(5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(334, 107);
-            this.button4.TabIndex = 3;
+            this.button4.TabIndex = 5;
             this.button4.Text = "Reports";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // BtnUsers
             // 
-            this.BtnUsers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnUsers.Location = new System.Drawing.Point(10, 224);
+            this.BtnUsers.Location = new System.Drawing.Point(10, 244);
             this.BtnUsers.Margin = new System.Windows.Forms.Padding(5);
             this.BtnUsers.Name = "BtnUsers";
             this.BtnUsers.Size = new System.Drawing.Size(334, 107);
-            this.BtnUsers.TabIndex = 2;
+            this.BtnUsers.TabIndex = 4;
             this.BtnUsers.Text = "Users";
             this.BtnUsers.UseVisualStyleBackColor = true;
             this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
             // 
             // BtnBooks
             // 
-            this.BtnBooks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnBooks.Location = new System.Drawing.Point(10, 117);
+            this.BtnBooks.Location = new System.Drawing.Point(10, 127);
             this.BtnBooks.Margin = new System.Windows.Forms.Padding(5);
             this.BtnBooks.Name = "BtnBooks";
             this.BtnBooks.Size = new System.Drawing.Size(334, 107);
-            this.BtnBooks.TabIndex = 1;
+            this.BtnBooks.TabIndex = 3;
             this.BtnBooks.Text = "Books";
             this.BtnBooks.UseVisualStyleBackColor = true;
             this.BtnBooks.Click += new System.EventHandler(this.BtnBooks_Click);
             // 
             // BtnDashboard
             // 
-            this.BtnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnDashboard.Location = new System.Drawing.Point(10, 10);
             this.BtnDashboard.Margin = new System.Windows.Forms.Padding(5);
             this.BtnDashboard.Name = "BtnDashboard";
             this.BtnDashboard.Size = new System.Drawing.Size(334, 107);
-            this.BtnDashboard.TabIndex = 0;
+            this.BtnDashboard.TabIndex = 2;
             this.BtnDashboard.Text = "Dashboard";
             this.BtnDashboard.UseVisualStyleBackColor = true;
+            this.BtnDashboard.Click += new System.EventHandler(this.BtnDashboard_Click);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.UControlProcessStudent);
+            this.panel3.Controls.Add(this.UControlBookTransaction);
+            this.panel3.Controls.Add(this.UControlHome);
             this.panel3.Controls.Add(this.UControlBooks);
             this.panel3.Controls.Add(this.UControlUsers);
             this.panel3.Controls.Add(this.UControlBookCategories);
@@ -181,6 +223,30 @@ namespace LibrarySystem
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(2150, 1104);
             this.panel3.TabIndex = 2;
+            // 
+            // UControlProcessStudent
+            // 
+            this.UControlProcessStudent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlProcessStudent.Location = new System.Drawing.Point(0, 0);
+            this.UControlProcessStudent.Name = "UControlProcessStudent";
+            this.UControlProcessStudent.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlProcessStudent.TabIndex = 5;
+            // 
+            // UControlBookTransaction
+            // 
+            this.UControlBookTransaction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlBookTransaction.Location = new System.Drawing.Point(0, 0);
+            this.UControlBookTransaction.Name = "UControlBookTransaction";
+            this.UControlBookTransaction.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlBookTransaction.TabIndex = 4;
+            // 
+            // UControlHome
+            // 
+            this.UControlHome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlHome.Location = new System.Drawing.Point(0, 0);
+            this.UControlHome.Name = "UControlHome";
+            this.UControlHome.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlHome.TabIndex = 3;
             // 
             // UControlBooks
             // 
@@ -217,6 +283,8 @@ namespace LibrarySystem
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -243,5 +311,11 @@ namespace LibrarySystem
         private System.Windows.Forms.Button BtnMyAccount;
         private System.Windows.Forms.Label LblUserId;
         private Books UControlBooks;
+        private System.Windows.Forms.Button BtnRequest;
+        private System.Windows.Forms.Button BtnReturn;
+        private Home UControlHome;
+        private BookTransaction UControlBookTransaction;
+        private System.Windows.Forms.Button button1;
+        private ProcessEnrolledStudents UControlProcessStudent;
     }
 }

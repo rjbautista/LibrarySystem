@@ -39,12 +39,12 @@ namespace LibrarySystem
                 string Email = TxtEmail.Text.Trim();
                 string Password = TxtPassword.Text.Trim();
                 int IsVisitor = ChkVisitor.Checked ? 1 : 0;
+                int IsEnrolled = ChkEnrolled.Checked ? 1 : 0;
                 string Status = CmbStatus.SelectedItem.ToString();
-
                 
                 string sqlCommand = "INSERT INTO users " +
-                    "(USN, Name, Role, Gender, Position, Course, Year, ContactNo, Email, Password, Status, IsVisitor) VALUES " +
-                    "('" + Usn + "', '" + Name + "', '" + Role + "', '" + Gender + "', '" + Position + "', '" + Course + "', '" + Year + "', '" + Contact + "', '" + Email + "', '" + Password + "', 'active', " + IsVisitor + ")";
+                    "(USN, Name, Role, Gender, Position, Course, Year, ContactNo, Email, Password, Status, IsVisitor, IsEnrolled) VALUES " +
+                    "('" + Usn + "', '" + Name + "', '" + Role + "', '" + Gender + "', '" + Position + "', '" + Course + "', '" + Year + "', '" + Contact + "', '" + Email + "', '" + Password + "', 'active', " + IsVisitor + ", " + IsEnrolled + ")";
 
                 if (IsEditing)
                 {
@@ -59,7 +59,8 @@ namespace LibrarySystem
                         + "ContactNo = '" + Contact + "',"
                         + "Email = '" + Email + "',"
                         + "Status = '" + Status + "',"
-                        + "IsVisitor = '" + IsVisitor + "'";
+                        + "IsVisitor = '" + IsVisitor + "',"
+                        + "IsEnrolled = '" + IsEnrolled + "'";
 
                     if (Password.Length > 0)
                     {
@@ -80,6 +81,7 @@ namespace LibrarySystem
                 BtnEdit.Enabled = true;
                 BtnDelete.Enabled = true;
                 GridUsers.Enabled = true;
+                GrpNewForm.Visible = false;
 
             }
         }
@@ -101,11 +103,11 @@ namespace LibrarySystem
             }
         }
 
-        private void RefreshGrid(string SearchKey = "")
+        public void RefreshGrid(string SearchKey = "")
         {
             MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
-            string sqlCommand = "SELECT ID, USN, Name, Role, Gender, Position, Course, Year, ContactNo, Email, Status, IsVisitor FROM users";
+            string sqlCommand = "SELECT ID, USN, Name, Role, Gender, Position, Course, Year, ContactNo, Email, Status, IsEnrolled, IsVisitor FROM users";
             if (!SearchKey.Equals(""))
             {
                 string FilterField = CmbFilter.SelectedItem.ToString();
@@ -126,6 +128,9 @@ namespace LibrarySystem
         {
             GrpNewForm.Visible = true;
             BtnNew.Enabled = false;
+            BtnEdit.Enabled = false;
+            BtnDelete.Enabled = false;
+            GridUsers.Enabled = false;
             this.clearForm();
         }
 
@@ -175,6 +180,7 @@ namespace LibrarySystem
                     TxtEmail.Text = reader["Email"].ToString();
                     CmbStatus.SelectedItem = reader["Status"].ToString();
                     ChkVisitor.Checked = (bool)reader["IsVisitor"];
+                    ChkVisitor.Checked = (bool)reader["IsEnrolled"];
 
                     GrpNewForm.Visible = true;
                 }
@@ -198,11 +204,11 @@ namespace LibrarySystem
         {
             if (GridUsers.SelectedRows.Count > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm delete", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to deactivate this user?", "Confirm status update", MessageBoxButtons.YesNo);
                 if (dialogResult.Equals(DialogResult.Yes)) {
                     DataGridViewRow row = GridUsers.SelectedRows[0];
                     string Id = row.Cells[0].Value.ToString();
-                    Helper.DB.ExecuteNonQuery("DELETE FROM users WHERE ID = '" + Id + "' LIMIT 1");
+                    Helper.DB.ExecuteNonQuery("UPDATE users SET status='deactivated' WHERE ID = '" + Id + "' LIMIT 1");
                     this.RefreshGrid();
                 }
             }
@@ -242,6 +248,25 @@ namespace LibrarySystem
                 return isValid;
             }
 
+            // Check USN.
+            bool UsnExist = false;
+            if (IsEditing)
+            {
+                UsnExist = Model.User.ExistingUsn(Usn, EditingId);
+            }
+            else
+            {
+                UsnExist = Model.User.ExistingUsn(Usn);
+            }
+
+            if (UsnExist)
+            {
+                MessageBox.Show("Entered USN is already in used.", "Invalid USN", MessageBoxButtons.OK);
+                TxtUsn.Focus();
+                return isValid;
+            }
+
+
             if (Role.Length < 1)
             {
                 MessageBox.Show("Please select a role.", "Account Information", MessageBoxButtons.OK);
@@ -252,7 +277,7 @@ namespace LibrarySystem
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(Email);
 
-            if (!match.Success)
+            if (!Email.Equals("") && !match.Success)
             {
                 MessageBox.Show("Please enter a valid Email address.", "Account Information", MessageBoxButtons.OK);
                 TxtEmail.Focus();
@@ -268,7 +293,7 @@ namespace LibrarySystem
 
             if (!IsEditing)
             {
-                if (Password.Length < 1)
+                if (cmbRole.SelectedItem.ToString() != "Student" && Password.Length < 1)
                 {
                     MessageBox.Show("Please enter a password.", "Account Information", MessageBoxButtons.OK);
                     TxtPassword.Focus();
@@ -324,6 +349,8 @@ namespace LibrarySystem
             TxtPassword.Clear();
             CmbStatus.SelectedIndex = 0;
             ChkVisitor.Checked = false;
+            ChkEnrolled.Checked = false;
         }
+
     }
 }

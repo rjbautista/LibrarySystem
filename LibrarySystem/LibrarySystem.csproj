@@ -66,6 +66,18 @@
     <Compile Include="Books.designer.cs">
       <DependentUpon>Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="BookTransaction.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BookTransaction.Designer.cs">
+      <DependentUpon>BookTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookTransactionDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookTransactionDetail.Designer.cs">
+      <DependentUpon>BookTransactionDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Courses.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +91,18 @@
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DB.cs" />
+    <Compile Include="Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IRForm.Designer.cs">
+      <DependentUpon>IRForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kiosk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,8 +121,21 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookCategory.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ProcessEnrolledStudents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProcessEnrolledStudents.Designer.cs">
+      <DependentUpon>ProcessEnrolledStudents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QrScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QrScanner.Designer.cs">
+      <DependentUpon>QrScanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Start.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +159,12 @@
     <EmbeddedResource Include="Books.resx">
       <DependentUpon>Books.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BookTransaction.resx">
+      <DependentUpon>BookTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookTransactionDetail.resx">
+      <DependentUpon>BookTransactionDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Courses.resx">
       <DependentUpon>Courses.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +180,9 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProcessEnrolledStudents.resx">
+      <DependentUpon>ProcessEnrolledStudents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -146,6 +192,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QrScanner.resx">
+      <DependentUpon>QrScanner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>

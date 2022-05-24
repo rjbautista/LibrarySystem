@@ -56,7 +56,8 @@ namespace LibrarySystem
                         "AvailableQty='" + Qty + "'," +
                         "TotalQty='" + Qty + "'," +
                         "CategoryId='" + Category + "'," +
-                        "Status='" + Status + "'" +
+                        "Status='" + Status + "'," +
+                        "LastUpdated='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
                         "WHERE ID = " + EditingId + " LIMIT 1";
                     GrpNewForm.Visible = false;
                     this.clearForm();
@@ -89,7 +90,7 @@ namespace LibrarySystem
                     "TotalQty=" + Qty + "," +
                     "CategoryId=" + Category + "," +
                     "Status=" + Status;
-                sqlCommand = "INSERT INTO booklogs (BookHeaderId, Description, UserId) VALUES ('" + insertedId + "', '" + description + "', '" + UserId + "')"; 
+                sqlCommand = "INSERT INTO booklogs (BookHeaderId, Description, UserId) VALUES ('" + insertedId + "', '" + description + "', '" + UserId.Text + "')"; 
                 Helper.DB.ExecuteNonQuery(sqlCommand);
 
                 TxtTitle.Clear();
@@ -118,7 +119,7 @@ namespace LibrarySystem
             }
         }
 
-        private void RefreshGrid(string SearchKey = "")
+        public void RefreshGrid(string SearchKey = "")
         {
             MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
@@ -143,6 +144,10 @@ namespace LibrarySystem
         {
             GrpNewForm.Visible = true;
             BtnNew.Enabled = false;
+            BtnEdit.Enabled = false;
+            BtnDelete.Enabled = false;
+            BtnView.Enabled = false;
+            GridBooks.Enabled = false;
             this.clearForm();
         }
 
@@ -155,6 +160,7 @@ namespace LibrarySystem
             BtnNew.Enabled = true;
             BtnEdit.Enabled = true;
             BtnDelete.Enabled = true;
+            BtnView.Enabled = true;
             GridBooks.Enabled = true;
         }
 
@@ -198,6 +204,7 @@ namespace LibrarySystem
             BtnNew.Enabled = false;
             BtnEdit.Enabled = false;
             BtnDelete.Enabled = false;
+            BtnView.Enabled = false;
             GridBooks.Enabled = false;
         }
 
@@ -206,18 +213,18 @@ namespace LibrarySystem
 
             BtnEdit.Enabled = true;
             BtnDelete.Enabled = true;
-
+            BtnView.Enabled = true;
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             if (GridBooks.SelectedRows.Count > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm delete", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this book?", "Confirm remove", MessageBoxButtons.YesNo);
                 if (dialogResult.Equals(DialogResult.Yes)) {
                     DataGridViewRow row = GridBooks.SelectedRows[0];
                     string Id = row.Cells[0].Value.ToString();
-                    Helper.DB.ExecuteNonQuery("DELETE FROM bookheaders WHERE ID = '" + Id + "' LIMIT 1");
+                    Helper.DB.ExecuteNonQuery("UPDATE bookheaders SET Status='deactivated' WHERE ID = '" + Id + "' LIMIT 1");
                     this.RefreshGrid();
                 }
             }
@@ -282,7 +289,22 @@ namespace LibrarySystem
 
         private void BtnView_Click(object sender, EventArgs e)
         {
+            if (GridBooks.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = GridBooks.SelectedRows[0];
+                Form BookDetails = new BookDetails();
 
+                string BookId = row.Cells[0].Value.ToString();
+                Control LblBookId = BookDetails.Controls.Find("LblBookId", true)[0];
+                LblBookId.Text = BookId;
+
+                string Title = row.Cells[2].Value.ToString();
+                Control LblBooktitle = BookDetails.Controls.Find("LblBooktitle", true)[0];
+                LblBooktitle.Text = Title;
+                
+                BookDetails.Show();
+            }
         }
+
     }
 }

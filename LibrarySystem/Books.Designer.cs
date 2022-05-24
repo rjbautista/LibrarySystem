@@ -30,6 +30,7 @@ namespace LibrarySystem
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnView = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
@@ -39,12 +40,20 @@ namespace LibrarySystem
             this.TxtTitle = new System.Windows.Forms.TextBox();
             this.ISBN = new System.Windows.Forms.Label();
             this.TxtIsbn = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtAuthor = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtEdition = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtPublisher = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.CmbCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtYear = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.CmbStatus = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtQty = new System.Windows.Forms.NumericUpDown();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
@@ -54,23 +63,14 @@ namespace LibrarySystem
             this.CmbFilter = new System.Windows.Forms.ComboBox();
             this.TxtSearch = new System.Windows.Forms.TextBox();
             this.BtnSearch = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtAuthor = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtEdition = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtPublisher = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtQty = new System.Windows.Forms.NumericUpDown();
-            this.BtnView = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.GrpNewForm.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridBooks)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -87,6 +87,17 @@ namespace LibrarySystem
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Manage Books";
             // 
+            // BtnView
+            // 
+            this.BtnView.Enabled = false;
+            this.BtnView.Location = new System.Drawing.Point(433, 43);
+            this.BtnView.Name = "BtnView";
+            this.BtnView.Size = new System.Drawing.Size(205, 59);
+            this.BtnView.TabIndex = 4;
+            this.BtnView.Text = "Book Details";
+            this.BtnView.UseVisualStyleBackColor = true;
+            this.BtnView.Click += new System.EventHandler(this.BtnView_Click);
+            // 
             // BtnDelete
             // 
             this.BtnDelete.Enabled = false;
@@ -94,7 +105,7 @@ namespace LibrarySystem
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(205, 59);
             this.BtnDelete.TabIndex = 3;
-            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.Text = "Remove";
             this.BtnDelete.UseVisualStyleBackColor = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
@@ -188,6 +199,51 @@ namespace LibrarySystem
             this.TxtIsbn.Size = new System.Drawing.Size(512, 31);
             this.TxtIsbn.TabIndex = 2;
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(13, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(286, 37);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Author";
+            // 
+            // TxtAuthor
+            // 
+            this.TxtAuthor.Location = new System.Drawing.Point(305, 87);
+            this.TxtAuthor.Name = "TxtAuthor";
+            this.TxtAuthor.Size = new System.Drawing.Size(512, 31);
+            this.TxtAuthor.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(13, 121);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(286, 37);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Edition";
+            // 
+            // TxtEdition
+            // 
+            this.TxtEdition.Location = new System.Drawing.Point(305, 124);
+            this.TxtEdition.Name = "TxtEdition";
+            this.TxtEdition.Size = new System.Drawing.Size(512, 31);
+            this.TxtEdition.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(13, 158);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(286, 37);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Publisher";
+            // 
+            // TxtPublisher
+            // 
+            this.TxtPublisher.Location = new System.Drawing.Point(305, 161);
+            this.TxtPublisher.Name = "TxtPublisher";
+            this.TxtPublisher.Size = new System.Drawing.Size(512, 31);
+            this.TxtPublisher.TabIndex = 5;
+            // 
             // label6
             // 
             this.label6.Location = new System.Drawing.Point(13, 195);
@@ -234,11 +290,32 @@ namespace LibrarySystem
             this.CmbStatus.FormattingEnabled = true;
             this.CmbStatus.Items.AddRange(new object[] {
             "active",
+            "withdrawn",
             "deactivated"});
             this.CmbStatus.Location = new System.Drawing.Point(305, 274);
             this.CmbStatus.Name = "CmbStatus";
             this.CmbStatus.Size = new System.Drawing.Size(512, 33);
             this.CmbStatus.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(13, 310);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(286, 37);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Total Qty";
+            // 
+            // txtQty
+            // 
+            this.txtQty.Location = new System.Drawing.Point(305, 313);
+            this.txtQty.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(512, 31);
+            this.txtQty.TabIndex = 9;
             // 
             // flowLayoutPanel2
             // 
@@ -338,89 +415,13 @@ namespace LibrarySystem
             // 
             // BtnSearch
             // 
-            this.BtnSearch.Location = new System.Drawing.Point(960, 27);
+            this.BtnSearch.Location = new System.Drawing.Point(960, 35);
             this.BtnSearch.Name = "BtnSearch";
-            this.BtnSearch.Size = new System.Drawing.Size(239, 62);
+            this.BtnSearch.Size = new System.Drawing.Size(239, 47);
             this.BtnSearch.TabIndex = 5;
             this.BtnSearch.Text = "Search";
             this.BtnSearch.UseVisualStyleBackColor = true;
             this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(13, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(286, 37);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Author";
-            // 
-            // TxtAuthor
-            // 
-            this.TxtAuthor.Location = new System.Drawing.Point(305, 87);
-            this.TxtAuthor.Name = "TxtAuthor";
-            this.TxtAuthor.Size = new System.Drawing.Size(512, 31);
-            this.TxtAuthor.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(13, 121);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(286, 37);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Edition";
-            // 
-            // TxtEdition
-            // 
-            this.TxtEdition.Location = new System.Drawing.Point(305, 124);
-            this.TxtEdition.Name = "TxtEdition";
-            this.TxtEdition.Size = new System.Drawing.Size(512, 31);
-            this.TxtEdition.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(13, 158);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(286, 37);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Publisher";
-            // 
-            // TxtPublisher
-            // 
-            this.TxtPublisher.Location = new System.Drawing.Point(305, 161);
-            this.TxtPublisher.Name = "TxtPublisher";
-            this.TxtPublisher.Size = new System.Drawing.Size(512, 31);
-            this.TxtPublisher.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(13, 310);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(286, 37);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Total Qty";
-            // 
-            // txtQty
-            // 
-            this.txtQty.Location = new System.Drawing.Point(305, 313);
-            this.txtQty.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(512, 31);
-            this.txtQty.TabIndex = 9;
-            // 
-            // BtnView
-            // 
-            this.BtnView.Enabled = false;
-            this.BtnView.Location = new System.Drawing.Point(433, 43);
-            this.BtnView.Name = "BtnView";
-            this.BtnView.Size = new System.Drawing.Size(205, 59);
-            this.BtnView.TabIndex = 4;
-            this.BtnView.Text = "View Details";
-            this.BtnView.UseVisualStyleBackColor = true;
-            this.BtnView.Click += new System.EventHandler(this.BtnView_Click);
             // 
             // Books
             // 
@@ -437,12 +438,12 @@ namespace LibrarySystem
             this.GrpNewForm.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridBooks)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -39,7 +39,7 @@ namespace LibrarySystem
                 LblUsername.Text = reader["Name"].ToString();
                 LblUserId.Text = reader["ID"].ToString();
                 Main.Show();
-                this.Close();
+                this.Hide();
             } else
             {
                 MessageBox.Show("Invalid combination of USN/Employee number and password.", "Login", MessageBoxButtons.OK);
@@ -68,6 +68,10 @@ namespace LibrarySystem
             Start.Show();
 
             this.Close();
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
     }
 }

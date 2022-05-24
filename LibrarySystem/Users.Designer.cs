@@ -58,6 +58,8 @@ namespace LibrarySystem
             this.cmbShowPass = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.ChkVisitor = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.ChkEnrolled = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.CmbStatus = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -94,7 +96,7 @@ namespace LibrarySystem
             // BtnDelete
             // 
             this.BtnDelete.Enabled = false;
-            this.BtnDelete.Location = new System.Drawing.Point(428, 43);
+            this.BtnDelete.Location = new System.Drawing.Point(433, 43);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(205, 59);
             this.BtnDelete.TabIndex = 3;
@@ -105,7 +107,7 @@ namespace LibrarySystem
             // BtnEdit
             // 
             this.BtnEdit.Enabled = false;
-            this.BtnEdit.Location = new System.Drawing.Point(217, 43);
+            this.BtnEdit.Location = new System.Drawing.Point(222, 43);
             this.BtnEdit.Name = "BtnEdit";
             this.BtnEdit.Size = new System.Drawing.Size(205, 59);
             this.BtnEdit.TabIndex = 1;
@@ -129,7 +131,7 @@ namespace LibrarySystem
             this.GrpNewForm.Controls.Add(this.flowLayoutPanel2);
             this.GrpNewForm.Location = new System.Drawing.Point(11, 114);
             this.GrpNewForm.Name = "GrpNewForm";
-            this.GrpNewForm.Size = new System.Drawing.Size(848, 732);
+            this.GrpNewForm.Size = new System.Drawing.Size(848, 776);
             this.GrpNewForm.TabIndex = 6;
             this.GrpNewForm.TabStop = false;
             this.GrpNewForm.Text = "User Information";
@@ -160,13 +162,15 @@ namespace LibrarySystem
             this.flowLayoutPanel1.Controls.Add(this.cmbShowPass);
             this.flowLayoutPanel1.Controls.Add(this.label11);
             this.flowLayoutPanel1.Controls.Add(this.ChkVisitor);
+            this.flowLayoutPanel1.Controls.Add(this.label13);
+            this.flowLayoutPanel1.Controls.Add(this.ChkEnrolled);
             this.flowLayoutPanel1.Controls.Add(this.label12);
             this.flowLayoutPanel1.Controls.Add(this.CmbStatus);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 27);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(842, 632);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(842, 676);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // label1
@@ -365,9 +369,26 @@ namespace LibrarySystem
             this.ChkVisitor.Text = "Yes";
             this.ChkVisitor.UseVisualStyleBackColor = true;
             // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(13, 483);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(286, 36);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Is Enrolled?";
+            // 
+            // ChkEnrolled
+            // 
+            this.ChkEnrolled.Location = new System.Drawing.Point(305, 486);
+            this.ChkEnrolled.Name = "ChkEnrolled";
+            this.ChkEnrolled.Size = new System.Drawing.Size(396, 29);
+            this.ChkEnrolled.TabIndex = 28;
+            this.ChkEnrolled.Text = "Yes";
+            this.ChkEnrolled.UseVisualStyleBackColor = true;
+            // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(13, 483);
+            this.label12.Location = new System.Drawing.Point(13, 519);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(286, 36);
             this.label12.TabIndex = 27;
@@ -380,7 +401,7 @@ namespace LibrarySystem
             this.CmbStatus.Items.AddRange(new object[] {
             "active",
             "deactivated"});
-            this.CmbStatus.Location = new System.Drawing.Point(305, 486);
+            this.CmbStatus.Location = new System.Drawing.Point(305, 522);
             this.CmbStatus.Name = "CmbStatus";
             this.CmbStatus.Size = new System.Drawing.Size(512, 33);
             this.CmbStatus.TabIndex = 14;
@@ -390,7 +411,7 @@ namespace LibrarySystem
             this.flowLayoutPanel2.Controls.Add(this.BtnSave);
             this.flowLayoutPanel2.Controls.Add(this.BtnCancel);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 659);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 703);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(842, 70);
             this.flowLayoutPanel2.TabIndex = 10;
@@ -482,9 +503,9 @@ namespace LibrarySystem
             // 
             // BtnSearch
             // 
-            this.BtnSearch.Location = new System.Drawing.Point(960, 27);
+            this.BtnSearch.Location = new System.Drawing.Point(960, 34);
             this.BtnSearch.Name = "BtnSearch";
-            this.BtnSearch.Size = new System.Drawing.Size(239, 62);
+            this.BtnSearch.Size = new System.Drawing.Size(239, 49);
             this.BtnSearch.TabIndex = 5;
             this.BtnSearch.Text = "Search";
             this.BtnSearch.UseVisualStyleBackColor = true;
@@ -556,5 +577,7 @@ namespace LibrarySystem
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox CmbStatus;
         private System.Windows.Forms.ComboBox CmbFilter;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox ChkEnrolled;
     }
 }

@@ -15,6 +15,7 @@
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\bin\Debug\MySql.Data.xml
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.exe.config
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookCategories.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookDetails.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Books.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Courses.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.EditAccount.resources
@@ -22,6 +23,7 @@
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Login.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Main.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Properties.Resources.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.QrScanner.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Start.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Users.resources
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.csproj.GenerateResource.cache
@@ -29,4 +31,7 @@
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.csproj.CopyComplete
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.exe
 \\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.pdb
-\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookDetails.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookTransaction.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.BookTransactionDetail.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.ProcessEnrolledStudents.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.csproj.AssemblyReference.cache
