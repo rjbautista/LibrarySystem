@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using MySql.Data.MySqlClient;
+using ComponentFactory.Krypton.Toolkit;
 
 
 namespace LibrarySystem
 {
-    public partial class QrScanner : Form
+    public partial class QrScanner : KryptonForm
     {
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;

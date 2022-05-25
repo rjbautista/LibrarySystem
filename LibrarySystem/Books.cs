@@ -306,5 +306,9 @@ namespace LibrarySystem
             }
         }
 
+        private void GridBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

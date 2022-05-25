@@ -41,44 +41,57 @@ namespace LibrarySystem
             // 
             // cboCamera
             // 
+            this.cboCamera.BackColor = System.Drawing.Color.White;
+            this.cboCamera.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCamera.FormattingEnabled = true;
-            this.cboCamera.Location = new System.Drawing.Point(111, 29);
+            this.cboCamera.Location = new System.Drawing.Point(79, 24);
+            this.cboCamera.Margin = new System.Windows.Forms.Padding(2);
             this.cboCamera.Name = "cboCamera";
-            this.cboCamera.Size = new System.Drawing.Size(495, 33);
+            this.cboCamera.Size = new System.Drawing.Size(328, 24);
             this.cboCamera.TabIndex = 0;
             // 
             // BtnStart
             // 
-            this.BtnStart.Location = new System.Drawing.Point(612, 22);
+            this.BtnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(1)))), ((int)(((byte)(21)))));
+            this.BtnStart.FlatAppearance.BorderSize = 0;
+            this.BtnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnStart.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnStart.ForeColor = System.Drawing.Color.White;
+            this.BtnStart.Location = new System.Drawing.Point(411, 24);
+            this.BtnStart.Margin = new System.Windows.Forms.Padding(2);
             this.BtnStart.Name = "BtnStart";
-            this.BtnStart.Size = new System.Drawing.Size(183, 45);
+            this.BtnStart.Size = new System.Drawing.Size(105, 24);
             this.BtnStart.TabIndex = 1;
             this.BtnStart.Text = "Start";
-            this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // txtResult
             // 
-            this.txtResult.Location = new System.Drawing.Point(-4, -2);
+            this.txtResult.Location = new System.Drawing.Point(-2, -1);
+            this.txtResult.Margin = new System.Windows.Forms.Padding(2);
             this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(410, 31);
+            this.txtResult.Size = new System.Drawing.Size(207, 20);
             this.txtResult.TabIndex = 2;
             this.txtResult.Visible = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 73);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 58);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1020, 821);
+            this.pictureBox1.Size = new System.Drawing.Size(510, 427);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 32);
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 25);
+            this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Camera";
             // 
@@ -89,17 +102,20 @@ namespace LibrarySystem
             // 
             // QrScanner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 906);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(522, 491);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.cboCamera);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "QrScanner";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QrScanner";
             this.TopMost = true;

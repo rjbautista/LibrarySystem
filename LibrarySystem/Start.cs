@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LibrarySystem
 {
-    public partial class Start : Form
+    public partial class Start : KryptonForm
     {
         public Start()
         {
@@ -34,6 +35,11 @@ namespace LibrarySystem
             Form Login = new Login();
             Login.Show();
             this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

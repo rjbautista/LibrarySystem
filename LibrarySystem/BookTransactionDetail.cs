@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LibrarySystem
 {
-    public partial class BookTransactionDetail : Form
+    public partial class BookTransactionDetail : KryptonForm
     {
         string BookHeaderId = "";
         string BookDetailId = "";

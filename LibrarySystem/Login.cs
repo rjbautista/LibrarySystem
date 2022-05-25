@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using MySql.Data.MySqlClient;
+using ComponentFactory.Krypton.Toolkit;
 
 
 
 
 namespace LibrarySystem
 {
-    public partial class Login : Form
+    public partial class Login : KryptonForm
     {
         public Login()
         {

@@ -11,10 +11,11 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using Microsoft.Reporting.WinForms;
 using System.IO;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LibrarySystem
 {
-    public partial class PrintQr : Form
+    public partial class PrintQr : KryptonForm
     {
         public string UserId = "";
         public PrintQr()

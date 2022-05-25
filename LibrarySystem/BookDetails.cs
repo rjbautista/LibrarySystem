@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LibrarySystem
 {
-    public partial class BookDetails : Form
+    public partial class BookDetails : KryptonForm
     {
         private Boolean IsEditing = false;
         private string EditingId = "";

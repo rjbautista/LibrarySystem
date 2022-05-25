@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LibrarySystem
 {
-    public partial class Kiosk : Form
+    public partial class Kiosk : KryptonForm
     {
         public Kiosk()
         {
@@ -182,6 +183,18 @@ namespace LibrarySystem
                 GridCart.Rows.Clear();
                 TxtUserId.Text = "";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+         
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            Form Register = new Register();
+            Register.Show();
         }
     }
 }

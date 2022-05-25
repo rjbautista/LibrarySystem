@@ -62,7 +62,9 @@ namespace LibrarySystem
         {
             // Get the Book header details
             MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            string sqlCommand = "SELECT Title, ISBN, Author, Publisher, PublicationYear, bookcategories.Name AS Category, AvailableQty, TotalQty, Status, Created FROM bookheaders LEFT JOIN bookcategories ON bookcategories.ID = bookheaders.CategoryId";
+            string sqlCommand = "SELECT Title, ISBN, Author, Publisher, PublicationYear, bookcategories.Name AS Category, AvailableQty, TotalQty, Status, Created FROM bookheaders " +
+                "LEFT JOIN bookcategories ON bookcategories.ID = bookheaders.CategoryId " +
+                " WHERE bookheaders.ID='" + CmbFilter.SelectedValue + "'";
 
             MySqlCommand command = new MySqlCommand(sqlCommand, dbConnection);
             dbConnection.Open();

@@ -42,6 +42,9 @@
     <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>..\..\..\..\Downloads\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -87,23 +90,33 @@
     <Compile Include="BookCategories.Designer.cs">
       <DependentUpon>BookCategories.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookDetails.cs" />
+    <Compile Include="BookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BookDetails.Designer.cs">
       <DependentUpon>BookDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Books.cs" />
+    <Compile Include="Books.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Books.designer.cs">
       <DependentUpon>Books.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookTransaction.cs" />
+    <Compile Include="BookTransaction.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BookTransaction.Designer.cs">
       <DependentUpon>BookTransaction.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookTransactionDetail.cs" />
+    <Compile Include="BookTransactionDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BookTransactionDetail.Designer.cs">
       <DependentUpon>BookTransactionDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Courses.cs" />
+    <Compile Include="Courses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Courses.designer.cs">
       <DependentUpon>Courses.cs</DependentUpon>
     </Compile>
@@ -120,19 +133,27 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="IRForm.cs" />
+    <Compile Include="IRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IRForm.Designer.cs">
       <DependentUpon>IRForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kiosk.cs" />
+    <Compile Include="Kiosk.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kiosk.Designer.cs">
       <DependentUpon>Kiosk.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
@@ -151,6 +172,12 @@
     <Compile Include="PrintQr.Designer.cs">
       <DependentUpon>PrintQr.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReport.Designer.cs">
+      <DependentUpon>PrintReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,29 +190,32 @@
     <Compile Include="ProcessEnrolledStudents.Designer.cs">
       <DependentUpon>ProcessEnrolledStudents.cs</DependentUpon>
     </Compile>
-    <Compile Include="QrScanner.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QrScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="QrScanner.Designer.cs">
       <DependentUpon>QrScanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrintReport.cs">
+    <Compile Include="Register.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrintReport.Designer.cs">
-      <DependentUpon>PrintReport.cs</DependentUpon>
+    <Compile Include="Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportDashboard.Designer.cs">
+    <Compile Include="ReportDashboard.designer.cs">
       <DependentUpon>ReportDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\DataSetLibrary.cs">
-      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DataSetLibrary.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
+    <Compile Include="Reports\DataSetLibrary.cs" />
+    <Compile Include="Reports\DataSetLibrary.designer.cs">
+      <DependentUpon>DataSetLibrary.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Start.cs">
@@ -196,9 +226,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users.cs" />
+    <Compile Include="Users.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Users.designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewReport.Designer.cs">
+      <DependentUpon>ViewReport.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="BookCategories.resx">
       <DependentUpon>BookCategories.cs</DependentUpon>
@@ -221,6 +259,9 @@
     <EmbeddedResource Include="EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IRForm.resx">
       <DependentUpon>IRForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,6 +280,9 @@
     <EmbeddedResource Include="PrintQr.resx">
       <DependentUpon>PrintQr.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PrintReport.resx">
+      <DependentUpon>PrintReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintUsers.resx">
       <DependentUpon>PrintUsers.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,18 +291,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="QrScanner.resx">
       <DependentUpon>QrScanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintReport.resx">
-      <DependentUpon>PrintReport.cs</DependentUpon>
+    <EmbeddedResource Include="Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDashboard.resx">
       <DependentUpon>ReportDashboard.cs</DependentUpon>
@@ -274,6 +314,9 @@
     <EmbeddedResource Include="Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewReport.resx">
+      <DependentUpon>ViewReport.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -284,22 +327,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Reports\DataSetLibrary.xsc">
-      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
-    </None>
-    <None Include="Reports\DataSetLibrary.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetLibrary.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Reports\DataSetLibrary.xss">
-      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\icons8-books-50.png" />
+    <None Include="Images\icons8-books-100.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

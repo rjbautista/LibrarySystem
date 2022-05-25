@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace LibrarySystem
 {
-    public partial class Main : Form
+    public partial class Main : KryptonForm
     {
         public string LoggedInUserId = "";
         public string LoggedInUserName = "";
@@ -40,7 +41,9 @@ namespace LibrarySystem
 
         private void Main_Load(object sender, EventArgs e)
         {
-            UControlHome.BringToFront();
+           UControlHome.BringToFront();
+         
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -58,6 +61,7 @@ namespace LibrarySystem
         private void BtnDashboard_Click(object sender, EventArgs e)
         {
             UControlHome.BringToFront();
+          
         }
 
         private void BtnRequest_Click(object sender, EventArgs e)
@@ -89,12 +93,7 @@ namespace LibrarySystem
 
         private void BtnReport_Click(object sender, EventArgs e)
         {
-            UControlReport.BringToFront();
-        }
-
-        private void UControlReport_Load(object sender, EventArgs e)
-        {
-
+            UControlReportDashboard.BringToFront();
         }
     }
 }
