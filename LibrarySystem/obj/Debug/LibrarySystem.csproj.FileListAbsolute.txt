@@ -333,3 +333,12 @@ C:\Users\perun\Documents\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\Lib
 \\Mac\Home\Downloads\Jink\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.PrintBookTxn.resources
 \\Mac\Home\Downloads\Jink\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.PrintReport.resources
 \\Mac\Home\Downloads\Jink\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.PrintUsers.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\bin\Debug\ComponentFactory.Krypton.Toolkit.dll
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\bin\Debug\ComponentFactory.Krypton.Toolkit.pdb
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Home.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.PrintBookTxn.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.PrintReport.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.PrintUsers.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.Register.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.ReportDashboard.resources
+\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\obj\Debug\LibrarySystem.ViewReport.resources

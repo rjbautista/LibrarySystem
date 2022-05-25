@@ -214,8 +214,10 @@
       <DependentUpon>ReportDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\DataSetLibrary.cs" />
-    <Compile Include="Reports\DataSetLibrary.designer.cs">
-      <DependentUpon>DataSetLibrary.cs</DependentUpon>
+    <Compile Include="Reports\DataSetLibrary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Start.cs">
@@ -327,6 +329,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Reports\DataSetLibrary.xsc">
+      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSetLibrary.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetLibrary.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSetLibrary.xss">
+      <DependentUpon>DataSetLibrary.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
