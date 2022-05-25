@@ -39,11 +39,12 @@ namespace LibrarySystem
             this.BtnReturn = new System.Windows.Forms.Button();
             this.BtnRequest = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BtnReport = new System.Windows.Forms.Button();
             this.BtnUsers = new System.Windows.Forms.Button();
             this.BtnBooks = new System.Windows.Forms.Button();
             this.BtnDashboard = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.UControlReport = new LibrarySystem.ReportDashboard();
             this.UControlProcessStudent = new LibrarySystem.ProcessEnrolledStudents();
             this.UControlBookTransaction = new LibrarySystem.BookTransaction();
             this.UControlHome = new LibrarySystem.Home();
@@ -111,7 +112,7 @@ namespace LibrarySystem
             this.panel2.Controls.Add(this.BtnReturn);
             this.panel2.Controls.Add(this.BtnRequest);
             this.panel2.Controls.Add(this.btnLogout);
-            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.BtnReport);
             this.panel2.Controls.Add(this.BtnUsers);
             this.panel2.Controls.Add(this.BtnBooks);
             this.panel2.Controls.Add(this.BtnDashboard);
@@ -167,15 +168,16 @@ namespace LibrarySystem
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // button4
+            // BtnReport
             // 
-            this.button4.Location = new System.Drawing.Point(10, 361);
-            this.button4.Margin = new System.Windows.Forms.Padding(5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(334, 107);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Reports";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BtnReport.Location = new System.Drawing.Point(10, 361);
+            this.BtnReport.Margin = new System.Windows.Forms.Padding(5);
+            this.BtnReport.Name = "BtnReport";
+            this.BtnReport.Size = new System.Drawing.Size(334, 107);
+            this.BtnReport.TabIndex = 5;
+            this.BtnReport.Text = "Reports";
+            this.BtnReport.UseVisualStyleBackColor = true;
+            this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
             // 
             // BtnUsers
             // 
@@ -212,6 +214,7 @@ namespace LibrarySystem
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.UControlReport);
             this.panel3.Controls.Add(this.UControlProcessStudent);
             this.panel3.Controls.Add(this.UControlBookTransaction);
             this.panel3.Controls.Add(this.UControlHome);
@@ -223,6 +226,15 @@ namespace LibrarySystem
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(2150, 1104);
             this.panel3.TabIndex = 2;
+            // 
+            // UControlReport
+            // 
+            this.UControlReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UControlReport.Location = new System.Drawing.Point(0, 0);
+            this.UControlReport.Name = "UControlReport";
+            this.UControlReport.Size = new System.Drawing.Size(2150, 1104);
+            this.UControlReport.TabIndex = 6;
+            this.UControlReport.Load += new System.EventHandler(this.UControlReport_Load);
             // 
             // UControlProcessStudent
             // 
@@ -299,7 +311,7 @@ namespace LibrarySystem
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BtnReport;
         private System.Windows.Forms.Button BtnUsers;
         private System.Windows.Forms.Button BtnBooks;
         private System.Windows.Forms.Button BtnDashboard;
@@ -317,5 +329,6 @@ namespace LibrarySystem
         private BookTransaction UControlBookTransaction;
         private System.Windows.Forms.Button button1;
         private ProcessEnrolledStudents UControlProcessStudent;
+        private ReportDashboard UControlReport;
     }
 }

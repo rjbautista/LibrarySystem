@@ -9,11 +9,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>631d671a-dba3-41bc-89ed-4a1d501396c1</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="DataSetLibrary">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6b22db02-0bce-4acd-ad1a-a9a8e17bf838</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet_Report">
       <Query>
-        <DataSourceName>DataUsers</DataSourceName>
+        <DataSourceName>DataSetLibrary</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -71,8 +78,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DataUsers</rd:DataSetName>
-        <rd:SchemaPath>\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\Reports\DataUsers.xsd</rd:SchemaPath>
+        <rd:DataSetName>DataSetLibrary</rd:DataSetName>
+        <rd:SchemaPath>\\Mac\Home\Desktop\LibrarySystem\LibrarySystem\LibrarySystem\Reports\DataSetLibrary.xsd</rd:SchemaPath>
         <rd:TableName>DataTable_Users</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

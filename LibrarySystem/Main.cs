@@ -86,5 +86,15 @@ namespace LibrarySystem
         {
             UControlProcessStudent.BringToFront();
         }
+
+        private void BtnReport_Click(object sender, EventArgs e)
+        {
+            UControlReport.BringToFront();
+        }
+
+        private void UControlReport_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
