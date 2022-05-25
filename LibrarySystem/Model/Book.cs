@@ -56,5 +56,6 @@ namespace LibrarySystem.Model
             string sqlCommand = "UPDATE bookheaders SET AvailableQty=" + TotalActiveBook + ", TotalQty=" + TotalBook + " WHERE ID=" + BookHeaderId;
             Helper.DB.ExecuteNonQuery(sqlCommand);
         }
+
     }
 }

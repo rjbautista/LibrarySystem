@@ -86,6 +86,23 @@ namespace LibrarySystem.Model
             dbConnection.Close();
             return Exist;
         }
+
+        public static string GetUserIdByUsn(string Usn)
+        {
+            string UserID = "";
+            MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            string sqlCommand = "SELECT * FROM users WHERE USN='" + Usn + "' LIMIT 1";
+            MySqlCommand command = new MySqlCommand(sqlCommand, dbConnection);
+            dbConnection.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                UserID = reader["ID"].ToString();
+            }
+
+            dbConnection.Close();
+            return UserID;
+        }
     }
 
 }

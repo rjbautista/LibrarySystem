@@ -30,6 +30,11 @@ namespace LibrarySystem
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LblTxnType = new System.Windows.Forms.Label();
+            this.BtnReturn = new System.Windows.Forms.Button();
+            this.BtnDecline = new System.Windows.Forms.Button();
+            this.BtnConfirm = new System.Windows.Forms.Button();
+            this.BtnIncident = new System.Windows.Forms.Button();
             this.LblTxnNo = new System.Windows.Forms.Label();
             this.LblTxnDetailHeader = new System.Windows.Forms.Label();
             this.BtnClose = new System.Windows.Forms.Button();
@@ -39,12 +44,14 @@ namespace LibrarySystem
             this.panel26 = new System.Windows.Forms.Panel();
             this.GridBookDetail = new System.Windows.Forms.DataGridView();
             this.panel27 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.LblIssueBook = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnUnassign = new System.Windows.Forms.Button();
             this.BtnAssign = new System.Windows.Forms.Button();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.BtnReturnAll = new System.Windows.Forms.Button();
+            this.BtnUnassign = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -70,6 +77,7 @@ namespace LibrarySystem
             this.panel18 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
             this.GrpBorrower = new System.Windows.Forms.GroupBox();
             this.LblUserId = new System.Windows.Forms.Label();
             this.LblVisitor = new System.Windows.Forms.Label();
@@ -88,11 +96,6 @@ namespace LibrarySystem
             this.label4 = new System.Windows.Forms.Label();
             this.LblName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnIncident = new System.Windows.Forms.Button();
-            this.BtnDecline = new System.Windows.Forms.Button();
-            this.BtnConfirm = new System.Windows.Forms.Button();
-            this.BtnReturn = new System.Windows.Forms.Button();
-            this.LblTxnType = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -103,6 +106,7 @@ namespace LibrarySystem
             this.panel16.SuspendLayout();
             this.panel22.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel25.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -139,6 +143,63 @@ namespace LibrarySystem
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(2270, 66);
             this.panel1.TabIndex = 1;
+            // 
+            // LblTxnType
+            // 
+            this.LblTxnType.AutoSize = true;
+            this.LblTxnType.Location = new System.Drawing.Point(587, 21);
+            this.LblTxnType.Name = "LblTxnType";
+            this.LblTxnType.Size = new System.Drawing.Size(173, 25);
+            this.LblTxnType.TabIndex = 4;
+            this.LblTxnType.Text = "TransactionType";
+            this.LblTxnType.Visible = false;
+            // 
+            // BtnReturn
+            // 
+            this.BtnReturn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BtnReturn.Location = new System.Drawing.Point(1197, 10);
+            this.BtnReturn.Name = "BtnReturn";
+            this.BtnReturn.Size = new System.Drawing.Size(212, 46);
+            this.BtnReturn.TabIndex = 3;
+            this.BtnReturn.Text = "Complete Return";
+            this.BtnReturn.UseVisualStyleBackColor = true;
+            this.BtnReturn.Visible = false;
+            this.BtnReturn.Click += new System.EventHandler(this.BtnReturn_Click);
+            // 
+            // BtnDecline
+            // 
+            this.BtnDecline.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BtnDecline.Location = new System.Drawing.Point(1409, 10);
+            this.BtnDecline.Name = "BtnDecline";
+            this.BtnDecline.Size = new System.Drawing.Size(212, 46);
+            this.BtnDecline.TabIndex = 1;
+            this.BtnDecline.Text = "Decline Request";
+            this.BtnDecline.UseVisualStyleBackColor = true;
+            this.BtnDecline.Visible = false;
+            this.BtnDecline.Click += new System.EventHandler(this.BtnDecline_Click);
+            // 
+            // BtnConfirm
+            // 
+            this.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BtnConfirm.Location = new System.Drawing.Point(1621, 10);
+            this.BtnConfirm.Name = "BtnConfirm";
+            this.BtnConfirm.Size = new System.Drawing.Size(212, 46);
+            this.BtnConfirm.TabIndex = 0;
+            this.BtnConfirm.Text = "Confirm Release";
+            this.BtnConfirm.UseVisualStyleBackColor = true;
+            this.BtnConfirm.Visible = false;
+            this.BtnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
+            // 
+            // BtnIncident
+            // 
+            this.BtnIncident.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BtnIncident.Location = new System.Drawing.Point(1833, 10);
+            this.BtnIncident.Name = "BtnIncident";
+            this.BtnIncident.Size = new System.Drawing.Size(254, 46);
+            this.BtnIncident.TabIndex = 2;
+            this.BtnIncident.Text = "Create Incident Report";
+            this.BtnIncident.UseVisualStyleBackColor = true;
+            this.BtnIncident.Click += new System.EventHandler(this.BtnIncident_Click);
             // 
             // LblTxnNo
             // 
@@ -197,8 +258,8 @@ namespace LibrarySystem
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(2270, 1010);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
@@ -207,9 +268,9 @@ namespace LibrarySystem
             this.panel17.Controls.Add(this.panel26);
             this.panel17.Controls.Add(this.panel27);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(1238, 508);
+            this.panel17.Location = new System.Drawing.Point(1238, 356);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(1029, 499);
+            this.panel17.Size = new System.Drawing.Size(1029, 651);
             this.panel17.TabIndex = 7;
             // 
             // panel26
@@ -218,7 +279,7 @@ namespace LibrarySystem
             this.panel26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel26.Location = new System.Drawing.Point(0, 100);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(1029, 399);
+            this.panel26.Size = new System.Drawing.Size(1029, 551);
             this.panel26.TabIndex = 3;
             // 
             // GridBookDetail
@@ -235,37 +296,37 @@ namespace LibrarySystem
             this.GridBookDetail.RowHeadersWidth = 82;
             this.GridBookDetail.RowTemplate.Height = 33;
             this.GridBookDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridBookDetail.Size = new System.Drawing.Size(1029, 399);
+            this.GridBookDetail.Size = new System.Drawing.Size(1029, 551);
             this.GridBookDetail.TabIndex = 2;
             this.GridBookDetail.SelectionChanged += new System.EventHandler(this.GridBookDetail_SelectionChanged);
             // 
             // panel27
             // 
-            this.panel27.Controls.Add(this.label3);
+            this.panel27.Controls.Add(this.LblIssueBook);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel27.Location = new System.Drawing.Point(0, 0);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(1029, 100);
             this.panel27.TabIndex = 2;
             // 
-            // label3
+            // LblIssueBook
             // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1029, 100);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Issue Book";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblIssueBook.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LblIssueBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIssueBook.Location = new System.Drawing.Point(0, 0);
+            this.LblIssueBook.Name = "LblIssueBook";
+            this.LblIssueBook.Size = new System.Drawing.Size(1029, 100);
+            this.LblIssueBook.TabIndex = 2;
+            this.LblIssueBook.Text = "Issue Book";
+            this.LblIssueBook.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel16
             // 
             this.panel16.Controls.Add(this.panel22);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel16.Location = new System.Drawing.Point(1038, 508);
+            this.panel16.Location = new System.Drawing.Point(1038, 356);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(194, 499);
+            this.panel16.Size = new System.Drawing.Size(194, 651);
             this.panel16.TabIndex = 6;
             // 
             // panel22
@@ -274,7 +335,7 @@ namespace LibrarySystem
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel22.Location = new System.Drawing.Point(0, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(194, 499);
+            this.panel22.Size = new System.Drawing.Size(194, 651);
             this.panel22.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -282,34 +343,23 @@ namespace LibrarySystem
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.BtnUnassign, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.BtnAssign, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel25, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 499);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 651);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // BtnUnassign
-            // 
-            this.BtnUnassign.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnUnassign.Enabled = false;
-            this.BtnUnassign.Location = new System.Drawing.Point(3, 252);
-            this.BtnUnassign.Name = "BtnUnassign";
-            this.BtnUnassign.Size = new System.Drawing.Size(188, 58);
-            this.BtnUnassign.TabIndex = 1;
-            this.BtnUnassign.Text = "Unassign >> ";
-            this.BtnUnassign.UseVisualStyleBackColor = true;
-            this.BtnUnassign.Click += new System.EventHandler(this.BtnUnassign_Click);
             // 
             // BtnAssign
             // 
             this.BtnAssign.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BtnAssign.Enabled = false;
-            this.BtnAssign.Location = new System.Drawing.Point(3, 188);
+            this.BtnAssign.Location = new System.Drawing.Point(3, 254);
             this.BtnAssign.Name = "BtnAssign";
             this.BtnAssign.Size = new System.Drawing.Size(188, 58);
             this.BtnAssign.TabIndex = 0;
@@ -317,13 +367,47 @@ namespace LibrarySystem
             this.BtnAssign.UseVisualStyleBackColor = true;
             this.BtnAssign.Click += new System.EventHandler(this.BtnAssign_Click);
             // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.BtnReturnAll);
+            this.panel25.Controls.Add(this.BtnUnassign);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel25.Location = new System.Drawing.Point(3, 318);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(188, 309);
+            this.panel25.TabIndex = 1;
+            // 
+            // BtnReturnAll
+            // 
+            this.BtnReturnAll.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnReturnAll.Location = new System.Drawing.Point(0, 58);
+            this.BtnReturnAll.Name = "BtnReturnAll";
+            this.BtnReturnAll.Size = new System.Drawing.Size(188, 58);
+            this.BtnReturnAll.TabIndex = 3;
+            this.BtnReturnAll.Text = "Return All";
+            this.BtnReturnAll.UseVisualStyleBackColor = true;
+            this.BtnReturnAll.Visible = false;
+            this.BtnReturnAll.Click += new System.EventHandler(this.BtnReturnAll_Click);
+            // 
+            // BtnUnassign
+            // 
+            this.BtnUnassign.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnUnassign.Enabled = false;
+            this.BtnUnassign.Location = new System.Drawing.Point(0, 0);
+            this.BtnUnassign.Name = "BtnUnassign";
+            this.BtnUnassign.Size = new System.Drawing.Size(188, 58);
+            this.BtnUnassign.TabIndex = 2;
+            this.BtnUnassign.Text = "Unassign >> ";
+            this.BtnUnassign.UseVisualStyleBackColor = true;
+            this.BtnUnassign.Click += new System.EventHandler(this.BtnUnassign_Click);
+            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.panel24);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(1238, 3);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1029, 499);
+            this.panel15.Size = new System.Drawing.Size(1029, 347);
             this.panel15.TabIndex = 5;
             // 
             // panel24
@@ -333,7 +417,7 @@ namespace LibrarySystem
             this.panel24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel24.Location = new System.Drawing.Point(0, 0);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(1029, 499);
+            this.panel24.Size = new System.Drawing.Size(1029, 347);
             this.panel24.TabIndex = 3;
             // 
             // panel4
@@ -343,7 +427,7 @@ namespace LibrarySystem
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 222);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1029, 277);
+            this.panel4.Size = new System.Drawing.Size(1029, 125);
             this.panel4.TabIndex = 1;
             // 
             // panel8
@@ -352,7 +436,7 @@ namespace LibrarySystem
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 30);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1029, 247);
+            this.panel8.Size = new System.Drawing.Size(1029, 95);
             this.panel8.TabIndex = 3;
             // 
             // panel12
@@ -362,7 +446,7 @@ namespace LibrarySystem
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1029, 247);
+            this.panel12.Size = new System.Drawing.Size(1029, 95);
             this.panel12.TabIndex = 0;
             // 
             // panel23
@@ -371,7 +455,7 @@ namespace LibrarySystem
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(1029, 191);
+            this.panel23.Size = new System.Drawing.Size(1029, 39);
             this.panel23.TabIndex = 1;
             // 
             // TxtNewNote
@@ -379,7 +463,7 @@ namespace LibrarySystem
             this.TxtNewNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtNewNote.Location = new System.Drawing.Point(0, 0);
             this.TxtNewNote.Name = "TxtNewNote";
-            this.TxtNewNote.Size = new System.Drawing.Size(1029, 191);
+            this.TxtNewNote.Size = new System.Drawing.Size(1029, 39);
             this.TxtNewNote.TabIndex = 2;
             this.TxtNewNote.Text = "";
             // 
@@ -387,7 +471,7 @@ namespace LibrarySystem
             // 
             this.panel13.Controls.Add(this.BtnSaveNote);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel13.Location = new System.Drawing.Point(0, 191);
+            this.panel13.Location = new System.Drawing.Point(0, 39);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(1029, 56);
             this.panel13.TabIndex = 0;
@@ -478,7 +562,7 @@ namespace LibrarySystem
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(1038, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(194, 499);
+            this.panel11.Size = new System.Drawing.Size(194, 347);
             this.panel11.TabIndex = 4;
             // 
             // panel20
@@ -486,7 +570,7 @@ namespace LibrarySystem
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel20.Location = new System.Drawing.Point(0, 100);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(194, 399);
+            this.panel20.Size = new System.Drawing.Size(194, 247);
             this.panel20.TabIndex = 3;
             // 
             // panel21
@@ -502,9 +586,9 @@ namespace LibrarySystem
             this.panel10.Controls.Add(this.panel19);
             this.panel10.Controls.Add(this.panel18);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(3, 508);
+            this.panel10.Location = new System.Drawing.Point(3, 356);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1029, 499);
+            this.panel10.Size = new System.Drawing.Size(1029, 651);
             this.panel10.TabIndex = 3;
             // 
             // panel19
@@ -513,7 +597,7 @@ namespace LibrarySystem
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel19.Location = new System.Drawing.Point(0, 100);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(1029, 399);
+            this.panel19.Size = new System.Drawing.Size(1029, 551);
             this.panel19.TabIndex = 1;
             // 
             // GridTxnDetail
@@ -530,7 +614,7 @@ namespace LibrarySystem
             this.GridTxnDetail.RowHeadersWidth = 82;
             this.GridTxnDetail.RowTemplate.Height = 33;
             this.GridTxnDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridTxnDetail.Size = new System.Drawing.Size(1029, 399);
+            this.GridTxnDetail.Size = new System.Drawing.Size(1029, 551);
             this.GridTxnDetail.TabIndex = 2;
             this.GridTxnDetail.SelectionChanged += new System.EventHandler(this.GridTxnDetail_SelectionChanged);
             // 
@@ -556,12 +640,21 @@ namespace LibrarySystem
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.panel14);
             this.panel5.Controls.Add(this.GrpBorrower);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1029, 499);
+            this.panel5.Size = new System.Drawing.Size(1029, 347);
             this.panel5.TabIndex = 0;
+            // 
+            // panel14
+            // 
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(1029, 100);
+            this.panel14.TabIndex = 4;
             // 
             // GrpBorrower
             // 
@@ -583,7 +676,7 @@ namespace LibrarySystem
             this.GrpBorrower.Controls.Add(this.LblName);
             this.GrpBorrower.Controls.Add(this.label1);
             this.GrpBorrower.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GrpBorrower.Location = new System.Drawing.Point(0, 217);
+            this.GrpBorrower.Location = new System.Drawing.Point(0, 65);
             this.GrpBorrower.Name = "GrpBorrower";
             this.GrpBorrower.Size = new System.Drawing.Size(1029, 282);
             this.GrpBorrower.TabIndex = 3;
@@ -736,61 +829,6 @@ namespace LibrarySystem
             this.label1.Text = "Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // BtnIncident
-            // 
-            this.BtnIncident.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BtnIncident.Location = new System.Drawing.Point(1833, 10);
-            this.BtnIncident.Name = "BtnIncident";
-            this.BtnIncident.Size = new System.Drawing.Size(254, 46);
-            this.BtnIncident.TabIndex = 2;
-            this.BtnIncident.Text = "Create Incident Report";
-            this.BtnIncident.UseVisualStyleBackColor = true;
-            this.BtnIncident.Click += new System.EventHandler(this.BtnIncident_Click);
-            // 
-            // BtnDecline
-            // 
-            this.BtnDecline.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BtnDecline.Location = new System.Drawing.Point(1409, 10);
-            this.BtnDecline.Name = "BtnDecline";
-            this.BtnDecline.Size = new System.Drawing.Size(212, 46);
-            this.BtnDecline.TabIndex = 1;
-            this.BtnDecline.Text = "Decline Request";
-            this.BtnDecline.UseVisualStyleBackColor = true;
-            this.BtnDecline.Visible = false;
-            this.BtnDecline.Click += new System.EventHandler(this.BtnDecline_Click);
-            // 
-            // BtnConfirm
-            // 
-            this.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BtnConfirm.Location = new System.Drawing.Point(1621, 10);
-            this.BtnConfirm.Name = "BtnConfirm";
-            this.BtnConfirm.Size = new System.Drawing.Size(212, 46);
-            this.BtnConfirm.TabIndex = 0;
-            this.BtnConfirm.Text = "Confirm Release";
-            this.BtnConfirm.UseVisualStyleBackColor = true;
-            this.BtnConfirm.Visible = false;
-            this.BtnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
-            // 
-            // BtnReturn
-            // 
-            this.BtnReturn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BtnReturn.Location = new System.Drawing.Point(1197, 10);
-            this.BtnReturn.Name = "BtnReturn";
-            this.BtnReturn.Size = new System.Drawing.Size(212, 46);
-            this.BtnReturn.TabIndex = 3;
-            this.BtnReturn.Text = "Complete Return";
-            this.BtnReturn.UseVisualStyleBackColor = true;
-            this.BtnReturn.Visible = false;
-            // 
-            // LblTxnType
-            // 
-            this.LblTxnType.AutoSize = true;
-            this.LblTxnType.Location = new System.Drawing.Point(587, 21);
-            this.LblTxnType.Name = "LblTxnType";
-            this.LblTxnType.Size = new System.Drawing.Size(173, 25);
-            this.LblTxnType.TabIndex = 4;
-            this.LblTxnType.Text = "TransactionType";
-            // 
             // BookTransactionDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -816,6 +854,7 @@ namespace LibrarySystem
             this.panel16.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -851,11 +890,10 @@ namespace LibrarySystem
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.DataGridView GridBookDetail;
         private System.Windows.Forms.Panel panel27;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LblIssueBook;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button BtnUnassign;
         private System.Windows.Forms.Button BtnAssign;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Panel panel24;
@@ -905,5 +943,9 @@ namespace LibrarySystem
         private System.Windows.Forms.Button BtnSaveNote;
         private System.Windows.Forms.Button BtnReturn;
         private System.Windows.Forms.Label LblTxnType;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel25;
+        private System.Windows.Forms.Button BtnUnassign;
+        private System.Windows.Forms.Button BtnReturnAll;
     }
 }

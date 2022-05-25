@@ -72,6 +72,7 @@ namespace LibrarySystem
                 Form BookTxnDetail = new BookTransactionDetail();
                 Control LblTxnNo = BookTxnDetail.Controls.Find("LblTxnNo", true)[0];
                 Control LblTxnType = BookTxnDetail.Controls.Find("LblTxnType", true)[0];
+                Control LblTxnDetailHeader = BookTxnDetail.Controls.Find("LblTxnDetailHeader", true)[0];
 
                 LblTxnNo.Text = TxnHeaderId;
                 LblTxnType.Text = LblTransaction.Text;

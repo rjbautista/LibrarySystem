@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using ZXing.Common;
+using ZXing;
+using ZXing.QrCode;
+using System.IO;
 
 namespace LibrarySystem
 {
@@ -71,7 +75,22 @@ namespace LibrarySystem
                     this.clearForm();
                 }
 
-                Helper.DB.ExecuteNonQuery(sqlCommand);
+                MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                dbConnection.Open();
+                MySqlCommand command = new MySqlCommand(sqlCommand, dbConnection);
+                command.ExecuteNonQuery();
+                string insertedId = command.LastInsertedId.ToString();
+
+                if (IsEditing)
+                {
+                    insertedId = EditingId;
+                }
+
+                // generate Qr code.
+                this.GenerateQR(Usn, insertedId);
+
+                dbConnection.Close();
+
                 TxtName.Clear();
                 IsEditing = false;
                 EditingId = "";
@@ -182,6 +201,13 @@ namespace LibrarySystem
                     ChkVisitor.Checked = (bool)reader["IsVisitor"];
                     ChkVisitor.Checked = (bool)reader["IsEnrolled"];
 
+                    string QrPath = reader["QR"].ToString();
+                    if (!QrPath.Equals(""))
+                    {
+                        // lod qr to image.
+                        PicQr.Image = Image.FromFile(QrPath);
+                    }
+
                     GrpNewForm.Visible = true;
                 }
                 dbConnection.Close();
@@ -197,6 +223,7 @@ namespace LibrarySystem
 
             BtnEdit.Enabled = true;
             BtnDelete.Enabled = true;
+            BtnQr.Enabled = true;
 
         }
 
@@ -352,5 +379,80 @@ namespace LibrarySystem
             ChkEnrolled.Checked = false;
         }
 
+        private void TxtUsn_Leave(object sender, EventArgs e)
+        {
+            this.GenerateQR(TxtUsn.Text, EditingId);
+        }
+
+        public string GenerateQR(string Usn, string UserId)
+        {
+
+            PicQr.InitialImage = null;
+            if (PicQr.Image != null)
+            {
+                PicQr.Image.Dispose();
+                PicQr.Image = null;
+            }
+            string QrPath = "";
+            QrCodeEncodingOptions options = new QrCodeEncodingOptions();
+            options = new QrCodeEncodingOptions
+            {
+                DisableECI = true,
+                CharacterSet = "UTF-8",
+                Width = 1000,
+                Height = 1000,
+            };
+            var writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Options = options;
+
+            if (String.IsNullOrWhiteSpace(Usn) || String.IsNullOrEmpty(Usn))
+            {
+                PicQr.Image = null;
+            }
+            else
+            {
+                var qr = new ZXing.BarcodeWriter();
+                qr.Options = options;
+                qr.Format = ZXing.BarcodeFormat.QR_CODE;
+                var result = new Bitmap(qr.Write(Usn.Trim()));
+                PicQr.Image = result;
+
+                if (!Directory.Exists("qr"))
+                {
+                    Directory.CreateDirectory("qr");
+                }
+                QrPath = "qr/" + UserId + ".jpg";
+                
+                PicQr.Image.Save(QrPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+
+                if (!QrPath.Equals(""))
+                {
+                    string sqlCommand = "UPDATE users SET QR='" + QrPath + "' WHERE ID='" + UserId + "' LIMIT 1";
+                    Helper.DB.ExecuteNonQuery(sqlCommand);
+                }
+            }
+            return QrPath;
+        }
+
+        private void BtnQr_Click(object sender, EventArgs e)
+        {
+            if (GridUsers.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = GridUsers.SelectedRows[0];
+                string UserId = row.Cells[0].Value.ToString();
+                string UserUsn = row.Cells[1].Value.ToString();
+
+                Form PrintQr = new PrintQr();
+
+                Control LblUserId = PrintQr.Controls.Find("LblUserId", true)[0];
+                LblUserId.Text = UserId;
+
+                this.GenerateQR(UserUsn, UserId);
+
+                PrintQr.Show();
+            }
+        }
     }
 }

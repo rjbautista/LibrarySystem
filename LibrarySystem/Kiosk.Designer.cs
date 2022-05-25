@@ -40,7 +40,7 @@ namespace LibrarySystem
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnSendRequest = new System.Windows.Forms.Button();
-            this.TxtUsn = new System.Windows.Forms.TextBox();
+            this.TxtUserId = new System.Windows.Forms.TextBox();
             this.BtnBorrow = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -166,9 +166,8 @@ namespace LibrarySystem
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.BtnSendRequest);
-            this.panel2.Controls.Add(this.TxtUsn);
             this.panel2.Controls.Add(this.BtnBorrow);
+            this.panel2.Controls.Add(this.BtnSendRequest);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 1006);
             this.panel2.Name = "panel2";
@@ -178,8 +177,7 @@ namespace LibrarySystem
             // 
             // BtnSendRequest
             // 
-            this.BtnSendRequest.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BtnSendRequest.Location = new System.Drawing.Point(1644, 10);
+            this.BtnSendRequest.Location = new System.Drawing.Point(-500, -500);
             this.BtnSendRequest.Name = "BtnSendRequest";
             this.BtnSendRequest.Size = new System.Drawing.Size(237, 80);
             this.BtnSendRequest.TabIndex = 2;
@@ -187,12 +185,12 @@ namespace LibrarySystem
             this.BtnSendRequest.UseVisualStyleBackColor = true;
             this.BtnSendRequest.Click += new System.EventHandler(this.BtnSendRequest_Click);
             // 
-            // TxtUsn
+            // TxtUserId
             // 
-            this.TxtUsn.Location = new System.Drawing.Point(1470, 35);
-            this.TxtUsn.Name = "TxtUsn";
-            this.TxtUsn.Size = new System.Drawing.Size(168, 31);
-            this.TxtUsn.TabIndex = 1;
+            this.TxtUserId.Location = new System.Drawing.Point(313, 570);
+            this.TxtUserId.Name = "TxtUserId";
+            this.TxtUserId.Size = new System.Drawing.Size(168, 31);
+            this.TxtUserId.TabIndex = 1;
             // 
             // BtnBorrow
             // 
@@ -235,6 +233,7 @@ namespace LibrarySystem
             // panel10
             // 
             this.panel10.Controls.Add(this.GridCart);
+            this.panel10.Controls.Add(this.TxtUserId);
             this.panel10.Controls.Add(this.label3);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(1109, 3);
@@ -375,10 +374,10 @@ namespace LibrarySystem
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridCart)).EndInit();
             this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridBooks)).EndInit();
@@ -414,6 +413,6 @@ namespace LibrarySystem
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Button BtnSearch;
         private System.Windows.Forms.Button BtnSendRequest;
-        private System.Windows.Forms.TextBox TxtUsn;
+        private System.Windows.Forms.TextBox TxtUserId;
     }
 }

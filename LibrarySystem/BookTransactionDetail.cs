@@ -19,6 +19,7 @@ namespace LibrarySystem
         string BookTxnHeaderId = "";
         string BookTxnDetailId = "";
         string BorrowerId = "";
+        string AdminId = "";
 
         public BookTransactionDetail()
         {
@@ -37,11 +38,77 @@ namespace LibrarySystem
             {
                 string SqlCommand = "UPDATE booktxnheaders SET Status='Borrowed', BorrowDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE ID='" + LblTxnNo.Text + "' LIMIT 1";
                 Helper.DB.ExecuteNonQuery(SqlCommand);
-                this.UpdateTxnHeaderGrid();
+
+                // Check the transaction details if bookdetail has a value, we will consider it as unreturned/missing..
+                MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                SqlCommand = "SELECT * FROM booktxndetails WHERE BookTxnHeaderId='" + BookTxnHeaderId + "'";
+                MySqlCommand command = new MySqlCommand(SqlCommand, dbConnection);
+                dbConnection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string BookHeaderId = reader["BookHeaderId"].ToString();
+                    string BookDetailId = reader["BookDetailId"].ToString();
+
+                    if (!BookDetailId.Equals(""))
+                    {
+                        // Create booklog.
+                        string BookNote = "Borrowed by " + LblName.Text + " with USN: " + LblUsn.Text + " " + LblCourse.Text + ". \nTransaction ID: " + BookTxnHeaderId;
+                        SqlCommand = "INSERT INTO booklogs (BookHeaderId,BookDetailId, Description, UserId) VALUES ('" + BookHeaderId + "', '" + BookDetailId + "', '" + BookNote + "', '" + AdminId + "')";
+                        Helper.DB.ExecuteNonQuery(SqlCommand);
+                    }
+
+                    Model.Book.UpdateBookCount(BookHeaderId);
+                }
+                dbConnection.Close();
+
+                Form Main = Application.OpenForms["Main"];
+                Button BtnRequest = Main.Controls.Find("BtnRequest", true).FirstOrDefault() as Button;
+                BtnRequest.PerformClick();
+
                 this.Close();
             }
         }
 
+        private void BtnReturn_Click(object sender, EventArgs e)
+        {
+            DialogResult Result = MessageBox.Show("Are you sure you want to complete this Book Request?\n Please make sure that all books have been returned otherwise it will be tagged as missing/unreturned.", "Confirm Book Return", MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes)
+            {
+                string BookTxnHeaderId = LblTxnNo.Text;
+                string SqlCommand = "UPDATE booktxnheaders SET Status='Returned', ReturnDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE ID='" + BookTxnHeaderId + "' LIMIT 1";
+                Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                // Check the transaction details if bookdetail has a value, we will consider it as unreturned/missing..
+                MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                SqlCommand = "SELECT * FROM booktxndetails WHERE BookTxnHeaderId='" + BookTxnHeaderId + "'";
+                MySqlCommand command = new MySqlCommand(SqlCommand, dbConnection);
+                dbConnection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string BookHeaderId = reader["BookHeaderId"].ToString();
+                    string BookDetailId = reader["BookDetailId"].ToString();
+                    bool IsReturn = (bool)reader["IsReturned"];
+
+                    if (!IsReturn) {
+                        // update bookdetail and set the book to back available.
+                        string BookNote = "This book has not been returned by " + LblName.Text + " with USN: " + LblUsn.Text + " " + LblCourse.Text + ". \nTransaction ID: " + BookTxnHeaderId;
+                        SqlCommand = "UPDATE bookdetails SET Status='unreturned', IsAvailable=0, Note='" + BookNote + "' WHERE ID='" + BookDetailId + "'";
+                        Helper.DB.ExecuteNonQuery(SqlCommand);
+                    }
+
+                    Model.Book.UpdateBookCount(BookHeaderId);
+                }
+                dbConnection.Close();
+
+                Form Main = Application.OpenForms["Main"];
+                Button BtnReturn = Main.Controls.Find("BtnReturn", true).FirstOrDefault() as Button;
+                BtnReturn.PerformClick();
+
+                this.Close();
+            }
+        }
         private void BtnDecline_Click(object sender, EventArgs e)
         {
             DialogResult Result = MessageBox.Show("Are you sure you want to Decline this Request?", "Decline Request", MessageBoxButtons.YesNo);
@@ -50,7 +117,7 @@ namespace LibrarySystem
                 string BookTxnHeaderId = LblTxnNo.Text;
                 string SqlCommand = "UPDATE booktxnheaders SET Status='Declined', DeclineDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE ID='" + BookTxnHeaderId + "' LIMIT 1";
                 Helper.DB.ExecuteNonQuery(SqlCommand);
-                this.UpdateTxnHeaderGrid();
+
                 this.Close();
 
                 // Put back all the books and it's inventory.
@@ -77,6 +144,10 @@ namespace LibrarySystem
                     Model.Book.UpdateBookCount(BookHeaderId);
                 }
                 dbConnection.Close();
+
+                Form Main = Application.OpenForms["Main"];
+                Button BtnReturn = Main.Controls.Find("BtnReturn", true).FirstOrDefault() as Button;
+                BtnReturn.PerformClick();
             }
         }
 
@@ -85,10 +156,17 @@ namespace LibrarySystem
             if (!this.DesignMode)
             {
                 this.LoadTxnRequestDetail();
-                GridTxnDetail.Rows[0].Selected = true;
+                if (GridTxnDetail.SelectedRows.Count > 0)
+                {
+                    GridTxnDetail.Rows[0].Selected = true;
+                }
                 this.LoadBookDetail();
                 UpdateBorrowerDetail();
                 this.UpdateNote();
+
+                Form Main = Application.OpenForms["Main"];
+                Control LblAdminId = Main.Controls.Find("LblUserId", true)[0];
+                AdminId = LblAdminId.Text;
 
                 switch (LblTxnType.Text)
                 {
@@ -98,6 +176,7 @@ namespace LibrarySystem
                         BtnDecline.Visible = true;
                         BtnAssign.Visible = true;
                         BtnUnassign.Text = "Unassign >>";
+                        BtnReturnAll.Visible = false;
 
                         break;
 
@@ -106,7 +185,8 @@ namespace LibrarySystem
                         BtnConfirm.Visible = false;
                         BtnDecline.Visible = false;
                         BtnAssign.Visible = false;
-                        BtnUnassign.Text = "Return Book";
+                        BtnUnassign.Text = "Return book >>";
+                        BtnReturnAll.Visible = true;
                         break;
                 }
             }
@@ -147,6 +227,11 @@ namespace LibrarySystem
                 "LEFT JOIN bookdetails bd " +
                     "ON bd.ID = btd.BookDetailId " +
                 "WHERE btd.BookTxnHeaderId='" + LblTxnNo.Text + "'";
+
+            if (LblTxnType.Text.Equals("Borrowed"))
+            {
+                SqlCommand += " AND btd.IsReturned=0";
+            }
 
             MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
@@ -193,6 +278,9 @@ namespace LibrarySystem
                 {
                     BtnAssign.Enabled = false;
                 }
+            } else {
+                GridBookDetail.DataSource = null;
+                GridBookDetail.Refresh();
             }
         }
 
@@ -207,6 +295,7 @@ namespace LibrarySystem
                 BorrowerId = LblUserId.Text;
 
                 string BookNo = row.Cells[3].Value.ToString();
+                string BookTitle = row.Cells[4].Value.ToString();
                 if (BookNo.Equals(""))
                 {
                     BtnUnassign.Enabled = false;
@@ -217,6 +306,7 @@ namespace LibrarySystem
                 }
                 BtnAssign.Enabled = true;
 
+                LblIssueBook.Text = "Issue book for " + BookTitle;
 
                 this.LoadBookDetail();
             }
@@ -235,14 +325,6 @@ namespace LibrarySystem
 
         }
         
-
-        private void UpdateTxnHeaderGrid()
-        {
-            Form Main= Application.OpenForms["Main"];
-            Control UControlBookTransaction = Main.Controls.Find("UControlBookTransaction", true)[0];
-            UControlBookTransaction.Refresh();
-        }
-
         private void BtnAssign_Click(object sender, EventArgs e)
         {
             if (GridTxnDetail.SelectedRows.Count > 0 && GridBookDetail.SelectedRows.Count > 0)
@@ -281,22 +363,57 @@ namespace LibrarySystem
             {
                 DataGridViewRow row = GridTxnDetail.SelectedRows[0];
                 string BookDetailId = row.Cells[2].Value.ToString();
+                string SqlCommand = "";
 
-                // update bookdetail and set the book to back available.
-                string SqlCommand = "UPDATE bookdetails SET Status='active', IsAvailable=1, UserId=NULL WHERE ID='" + BookDetailId + "'";
-                Helper.DB.ExecuteNonQuery(SqlCommand);
+                if (LblTxnType.Text.Equals("Borrowed"))
+                {
+                    DialogResult Result = MessageBox.Show("Return selected book?", "Return book", MessageBoxButtons.YesNo);
+                    if (Result == DialogResult.Yes)
+                    {
+                        // update bookdetail and set the book to back available.
+                        SqlCommand = "UPDATE bookdetails SET Status='active', IsAvailable=1, UserId=NULL WHERE ID='" + BookDetailId + "'";
+                        Helper.DB.ExecuteNonQuery(SqlCommand);
 
-                // update txndetail with the bookdetail
-                SqlCommand = "UPDATE booktxndetails SET BookDetailId=NULL, BorrowDate=NULL " +
-                    "WHERE BookHeaderId='" + BookHeaderId + "' AND BookTxnHeaderId='" + BookTxnHeaderId + "' AND ID='" + BookTxnDetailId + "' AND UserId='" + LblUserId.Text + "'";
-                Helper.DB.ExecuteNonQuery(SqlCommand);
+                        // update txndetail with the bookdetail
+                        SqlCommand = "UPDATE booktxndetails SET IsReturned=1, ReturnDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                            "WHERE BookHeaderId='" + BookHeaderId + "' AND BookTxnHeaderId='" + BookTxnHeaderId + "' AND ID='" + BookTxnDetailId + "' AND UserId='" + LblUserId.Text + "'";
+                        Helper.DB.ExecuteNonQuery(SqlCommand);
 
-                // update total available book count.
-                Model.Book.UpdateBookCount(BookHeaderId);
+                        // Create booklog.
+                        string BookNote = "Returned by " + LblName.Text + " with USN: " + LblUsn.Text + " " + LblCourse.Text + ". \nTransaction ID: " + BookTxnHeaderId;
+                        SqlCommand = "INSERT INTO booklogs (BookHeaderId,BookDetailId, Description, UserId) VALUES ('" + BookHeaderId + "', '" + BookDetailId + "', '" + BookNote + "', '" + AdminId + "')";
+                        Helper.DB.ExecuteNonQuery(SqlCommand);
 
-                // refresh grids
-                LoadTxnRequestDetail();
-                LoadBookDetail();
+                        // update total available book count.
+                        Model.Book.UpdateBookCount(BookHeaderId);
+
+                        // refresh grids
+                        LoadTxnRequestDetail();
+                        LoadBookDetail();
+                    }
+                }
+                else
+                {
+                    // update bookdetail and set the book to back available.
+                    SqlCommand = "UPDATE bookdetails SET Status='active', IsAvailable=1, UserId=NULL WHERE ID='" + BookDetailId + "'";
+                    Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                    // update txndetail with the bookdetail
+                    SqlCommand = "UPDATE booktxndetails SET BookDetailId=NULL, BorrowDate=NULL " +
+                        "WHERE BookHeaderId='" + BookHeaderId + "' AND BookTxnHeaderId='" + BookTxnHeaderId + "' AND ID='" + BookTxnDetailId + "' AND UserId='" + LblUserId.Text + "'";
+                    Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                    // update total available book count.
+                    Model.Book.UpdateBookCount(BookHeaderId);
+
+                    // refresh grids
+                    LoadTxnRequestDetail();
+                    LoadBookDetail();
+                }
+
+
+
+
             }
         }
 
@@ -335,7 +452,77 @@ namespace LibrarySystem
 
         private void BtnIncident_Click(object sender, EventArgs e)
         {
+            Form IRForm = new IRForm();
 
+            Label LblIrNumber = IRForm.Controls.Find("LblIrNumber", true).FirstOrDefault() as Label;
+            LblIrNumber.Text = DateTime.Now.ToString("yymmddhhmmss");
+
+
+            Label IrLblName = IRForm.Controls.Find("LblName", true).FirstOrDefault() as Label;
+            IrLblName.Text = LblName.Text;
+
+            Label IrLblUsn = IRForm.Controls.Find("LblUsn", true).FirstOrDefault() as Label;
+            IrLblUsn.Text = LblUsn.Text;
+
+            Label IrLblCourse = IRForm.Controls.Find("LblCourse", true).FirstOrDefault() as Label;
+            IrLblCourse.Text = LblCourse.Text;
+
+            Label IrLblTxnNo = IRForm.Controls.Find("LblTxnNo", true).FirstOrDefault() as Label;
+            IrLblTxnNo.Text = LblTxnNo.Text;
+
+            Label IrLblStudentId = IRForm.Controls.Find("LblStudentId", true).FirstOrDefault() as Label;
+            IrLblStudentId.Text = LblUserId.Text;
+
+            Label IrLblTxnHeaderId = IRForm.Controls.Find("LblTxnHeaderId", true).FirstOrDefault() as Label;
+            IrLblTxnHeaderId.Text = LblTxnNo.Text;
+            
+
+            IRForm.Show();
+        }
+
+        private void BtnReturnAll_Click(object sender, EventArgs e)
+        {
+            DialogResult Result = MessageBox.Show("Are you sure you want return all the books?", "Return all books", MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes)
+            {
+                string BookTxnHeaderId = LblTxnNo.Text;
+                string SqlCommand = "UPDATE booktxnheaders SET Status='Returned', ReturnDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE ID='" + BookTxnHeaderId + "' LIMIT 1";
+                Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                // Check the transaction details if bookdetail has a value, we will consider it as unreturned/missing..
+                MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                SqlCommand = "SELECT * FROM booktxndetails WHERE BookTxnHeaderId='" + BookTxnHeaderId + "'";
+                MySqlCommand command = new MySqlCommand(SqlCommand, dbConnection);
+                dbConnection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string BookTxnDetailId = reader["ID"].ToString();
+                    string BookHeaderId = reader["BookHeaderId"].ToString();
+                    string BookDetailId = reader["BookDetailId"].ToString();
+
+                    // update bookdetail and set the book to back available.
+                    SqlCommand = "UPDATE bookdetails SET Status='active', IsAvailable=1, UserId=NULL WHERE ID='" + BookDetailId + "'";
+                    Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                    // update txndetail with the bookdetail
+                    SqlCommand = "UPDATE booktxndetails SET IsReturned=1, ReturnDate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                        "WHERE BookHeaderId='" + BookHeaderId + "' AND BookTxnHeaderId='" + BookTxnHeaderId + "' AND ID='" + BookTxnDetailId + "' AND UserId='" + LblUserId.Text + "'";
+                    Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                    // Create booklog.
+                    string BookNote = "Returned by " + LblName.Text + " with USN: " + LblUsn.Text + " " + LblCourse.Text + ". \nTransaction ID: " + BookTxnHeaderId;
+                    SqlCommand = "INSERT INTO booklogs (BookHeaderId,BookDetailId, Description, UserId) VALUES ('" + BookHeaderId + "', '" + BookDetailId + "', '" + BookNote + "', '" + AdminId + "')";
+                    Helper.DB.ExecuteNonQuery(SqlCommand);
+
+                    Model.Book.UpdateBookCount(BookHeaderId);
+                }
+                dbConnection.Close();
+
+                // refresh grids
+                LoadTxnRequestDetail();
+                LoadBookDetail();
+            }
         }
     }
 }

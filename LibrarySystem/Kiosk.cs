@@ -48,12 +48,12 @@ namespace LibrarySystem
                 sqlCommand += " AND " + FilterField + " LIKE '%" + SearchKey + "%'";
             } else
             {
-                sqlCommand += " AND Title LIKE '%" + SearchKey + "%' " +
+                sqlCommand += " AND (Title LIKE '%" + SearchKey + "%' " +
                     "OR ISBN LIKE '%" + SearchKey + "%' " +
                     "OR Author LIKE '%" + SearchKey + "%' " +
                     "OR Publisher LIKE '%" + SearchKey + "%' " +
                     "OR Name LIKE '%" + SearchKey + "%' " +
-                    "OR PublicationYear LIKE '%" + SearchKey + "%'";
+                    "OR PublicationYear LIKE '%" + SearchKey + "%')";
             }
 
             MySqlCommand command = new MySqlCommand(sqlCommand, dbConnection);
@@ -151,33 +151,37 @@ namespace LibrarySystem
 
         private void BtnSendRequest_Click(object sender, EventArgs e)
         {
-            string StudentUserId = "7";
-            /**
-             * TxnHeader Status:
-             * - Request
-             * - Declined
-             * - Borrowed
-             * - Completed
-             */
-            string sqlCommand = "INSERT INTO booktxnheaders(UserId, Status) VALUES('" + StudentUserId + "', 'Request')";
-            
-            // create txn header
-            MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            dbConnection.Open();
-            MySqlCommand command = new MySqlCommand(sqlCommand, dbConnection);
-            command.ExecuteNonQuery();
-            string insertedId = command.LastInsertedId.ToString();
-
-            // create txn detail.
-            foreach (DataGridViewRow Row in GridCart.Rows)
+            if (!TxtUserId.Text.Equals(""))
             {
-                String BookHeaderId = Row.Cells["ID"].Value.ToString();
-                sqlCommand = "INSERT INTO booktxndetails (BookTxnHeaderId, BookHeaderId, UserId) VALUES ('" + insertedId + "', '" + BookHeaderId + "', '" + StudentUserId + "')";
-                Helper.DB.ExecuteNonQuery(sqlCommand);
-            }
+                string StudentUserId = TxtUserId.Text;
+                /**
+                 * TxnHeader Status:
+                 * - Request
+                 * - Declined
+                 * - Borrowed
+                 * - Completed
+                 */
+                string sqlCommand = "INSERT INTO booktxnheaders(UserId, Status) VALUES('" + StudentUserId + "', 'Request')";
 
-            MessageBox.Show("Your request has been created. Please proceed to Librian desk.", "Request Complete", MessageBoxButtons.OK);
-            GridCart.Rows.Clear();
+                // create txn header
+                MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                dbConnection.Open();
+                MySqlCommand command = new MySqlCommand(sqlCommand, dbConnection);
+                command.ExecuteNonQuery();
+                string insertedId = command.LastInsertedId.ToString();
+
+                // create txn detail.
+                foreach (DataGridViewRow Row in GridCart.Rows)
+                {
+                    String BookHeaderId = Row.Cells["ID"].Value.ToString();
+                    sqlCommand = "INSERT INTO booktxndetails (BookTxnHeaderId, BookHeaderId, UserId) VALUES ('" + insertedId + "', '" + BookHeaderId + "', '" + StudentUserId + "')";
+                    Helper.DB.ExecuteNonQuery(sqlCommand);
+                }
+
+                MessageBox.Show("Your request has been created. Please proceed to Librian desk.", "Request Complete", MessageBoxButtons.OK);
+                GridCart.Rows.Clear();
+                TxtUserId.Text = "";
+            }
         }
     }
 }

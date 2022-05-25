@@ -30,6 +30,7 @@ namespace LibrarySystem
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnQr = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@ namespace LibrarySystem
             this.ChkEnrolled = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.CmbStatus = new System.Windows.Forms.ComboBox();
+            this.PicQr = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
@@ -74,6 +76,7 @@ namespace LibrarySystem
             this.groupBox1.SuspendLayout();
             this.GrpNewForm.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicQr)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridUsers)).BeginInit();
             this.panel1.SuspendLayout();
@@ -82,6 +85,7 @@ namespace LibrarySystem
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BtnQr);
             this.groupBox1.Controls.Add(this.BtnDelete);
             this.groupBox1.Controls.Add(this.BtnEdit);
             this.groupBox1.Controls.Add(this.BtnNew);
@@ -92,6 +96,17 @@ namespace LibrarySystem
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Manage Users";
+            // 
+            // BtnQr
+            // 
+            this.BtnQr.Enabled = false;
+            this.BtnQr.Location = new System.Drawing.Point(644, 43);
+            this.BtnQr.Name = "BtnQr";
+            this.BtnQr.Size = new System.Drawing.Size(205, 59);
+            this.BtnQr.TabIndex = 4;
+            this.BtnQr.Text = "Print QR";
+            this.BtnQr.UseVisualStyleBackColor = true;
+            this.BtnQr.Click += new System.EventHandler(this.BtnQr_Click);
             // 
             // BtnDelete
             // 
@@ -131,7 +146,7 @@ namespace LibrarySystem
             this.GrpNewForm.Controls.Add(this.flowLayoutPanel2);
             this.GrpNewForm.Location = new System.Drawing.Point(11, 114);
             this.GrpNewForm.Name = "GrpNewForm";
-            this.GrpNewForm.Size = new System.Drawing.Size(848, 776);
+            this.GrpNewForm.Size = new System.Drawing.Size(848, 908);
             this.GrpNewForm.TabIndex = 6;
             this.GrpNewForm.TabStop = false;
             this.GrpNewForm.Text = "User Information";
@@ -166,11 +181,12 @@ namespace LibrarySystem
             this.flowLayoutPanel1.Controls.Add(this.ChkEnrolled);
             this.flowLayoutPanel1.Controls.Add(this.label12);
             this.flowLayoutPanel1.Controls.Add(this.CmbStatus);
+            this.flowLayoutPanel1.Controls.Add(this.PicQr);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 27);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(842, 676);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(842, 808);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // label1
@@ -202,6 +218,7 @@ namespace LibrarySystem
             this.TxtUsn.Name = "TxtUsn";
             this.TxtUsn.Size = new System.Drawing.Size(512, 31);
             this.TxtUsn.TabIndex = 2;
+            this.TxtUsn.Leave += new System.EventHandler(this.TxtUsn_Leave);
             // 
             // label3
             // 
@@ -406,12 +423,21 @@ namespace LibrarySystem
             this.CmbStatus.Size = new System.Drawing.Size(512, 33);
             this.CmbStatus.TabIndex = 14;
             // 
+            // PicQr
+            // 
+            this.PicQr.Location = new System.Drawing.Point(13, 561);
+            this.PicQr.Name = "PicQr";
+            this.PicQr.Size = new System.Drawing.Size(150, 150);
+            this.PicQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicQr.TabIndex = 30;
+            this.PicQr.TabStop = false;
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.BtnSave);
             this.flowLayoutPanel2.Controls.Add(this.BtnCancel);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 703);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 835);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(842, 70);
             this.flowLayoutPanel2.TabIndex = 10;
@@ -526,6 +552,7 @@ namespace LibrarySystem
             this.GrpNewForm.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicQr)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridUsers)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -579,5 +606,7 @@ namespace LibrarySystem
         private System.Windows.Forms.ComboBox CmbFilter;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox ChkEnrolled;
+        private System.Windows.Forms.Button BtnQr;
+        private System.Windows.Forms.PictureBox PicQr;
     }
 }
